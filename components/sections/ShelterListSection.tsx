@@ -6,12 +6,7 @@ import { getFirestore, collection } from 'firebase/firestore'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 
 const ShelterListSection = () => {
-  const [shelters, loading, error] = useCollectionData(collection(
-    getFirestore(), 'users'),
-    {
-      snapshotListenOptions: { includeMetadataChanges: true },
-    }
-  )
+  const [shelters, loading, error] = useCollectionData(collection(getFirestore(), 'users'))
 
   return (
     <Section

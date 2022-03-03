@@ -6,7 +6,8 @@ const provider = new GoogleAuthProvider()
 
 const formatAuthUser = (user) => ({
   uid: user.uid,
-  email: user.email
+  email: user.email,
+  userPhoto: user.photoURL,
 })
 
 export default function useFirebaseAuth() {

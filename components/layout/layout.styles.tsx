@@ -5,5 +5,5 @@ export const StyledMain = styled.main`
 `
 
 export const StyledContent = styled.div`
-    padding: 80px 30px 20px;
+    padding: 32px 30px 20px;
 `
