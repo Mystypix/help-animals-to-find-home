@@ -18,3 +18,5 @@ export const PopupBox = styled.div`
 export const MarkerWrap = styled.div`
   cursor: 'pointer';
 `
+
+export default MapContainer

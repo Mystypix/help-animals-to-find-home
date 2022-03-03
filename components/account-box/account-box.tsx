@@ -4,10 +4,11 @@ import { useAuth } from '../../context/auth-user-context'
 import { useState } from "react"
 import { StyledWrapper, StyledAvatar, StyledAccountPopUp } from "./account-box.styles"
 import { db } from '../../firebase/firebase'
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, query, where, getDocs } from "firebase/firestore"
+import React from 'react'
 
 const AccountBox = () => {
-    const { authUser, signOut } = useAuth()
+    const { authUser, signOut }: any = useAuth()
     const [open, setOpen] = useState(false)
 
     const getDBUser = async (user: any) => {
@@ -18,7 +19,7 @@ const AccountBox = () => {
         return querySnapshot.empty ? {} : querySnapshot.docs[0].data()
     }
     
-    const user = getDBUser(authUser)
+    const user = getDBUser(authUser) as any
 
     return (
         <StyledWrapper>

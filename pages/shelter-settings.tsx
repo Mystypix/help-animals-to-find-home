@@ -10,7 +10,8 @@ import {InputLabel} from '../components/common/input-label'
 import SectionTitle from "../components/section-title"
 import PageTitle from "../components/page-title"
 import { getStorage, ref, uploadBytes } from "firebase/storage"
-import Image from 'next/image'
+import Image from '../components/image'
+import React from 'react'
 
 const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
     props,
@@ -97,7 +98,7 @@ const ShelterSetting = (props: any) => {
             <form onSubmit={handleSubmit}>
                 <div>
                     <SectionTitle>Image</SectionTitle>
-                    {inputs.image && <Image src={inputs.image} width='572' height='560' />}
+                    {inputs.image && <Image src={inputs.image} width='572' height='560' alt='Animal image' />}
                     <label htmlFor="shelter-image">
                         <Input
                             style={{ display: 'none' }}
@@ -106,7 +107,7 @@ const ShelterSetting = (props: any) => {
                             type="file"
                             onChange={handleImageUpload}
                         />
-                        <Button color="secondary" variant="contained" component="span">
+                        <Button color="secondary" variant="contained">
                             Upload button
                         </Button>
                     </label>

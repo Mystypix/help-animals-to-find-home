@@ -4,7 +4,7 @@ import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 
 const provider = new GoogleAuthProvider()
 
-const formatAuthUser = (user) => ({
+const formatAuthUser = (user: any) => ({
   uid: user.uid,
   email: user.email,
   userPhoto: user.photoURL,
@@ -14,7 +14,7 @@ export default function useFirebaseAuth() {
   const [authUser, setAuthUser] = useState(null)
   const [loading, setLoading] = useState(true)
 
-  const authStateChanged = async (authState) => {
+  const authStateChanged = async (authState: any) => {
     if (!authState) {
       setAuthUser(null)
       setLoading(false)
@@ -22,7 +22,7 @@ export default function useFirebaseAuth() {
     }
 
     setLoading(true)
-    var formattedUser = formatAuthUser(authState)
+    const formattedUser: any = formatAuthUser(authState)
     setAuthUser(formattedUser)
     setLoading(false)
   }

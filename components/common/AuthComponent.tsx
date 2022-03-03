@@ -5,11 +5,12 @@ import { useRouter } from 'next/router'
 import { useState, useEffect } from "react"
 import CircularProgress from '@mui/material/CircularProgress';
 import { getStorage, ref, getDownloadURL } from "firebase/storage"
+import React from 'react'
 
 const withAuth = (Component: any) => {
     const AuthenticatedComponent = () => {
         const router = useRouter();
-        const { authUser, loading } = useAuth()
+        const { authUser, loading }: any = useAuth()
         const [data, setData] = useState({})
 
         useEffect(() => {
@@ -50,7 +51,7 @@ const withAuth = (Component: any) => {
             if (!loading) {
                 getUser();
             }
-        }, [loading, authUser]);
+        }, [loading, authUser, router]);
         return Object.keys(data).length && !loading ? <Component userData={data} /> : <CircularProgress size={500}/>
     };
 
