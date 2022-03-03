@@ -78,10 +78,6 @@ const LoginAndRegister: NextPage = () => {
   
   return (
     <div className={styles.container}>
-      <Head>
-        <title>Help animals to find home - registration</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       {loading && <div>loading...</div>}
       {!authUser && (
         <div>

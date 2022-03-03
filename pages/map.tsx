@@ -30,10 +30,6 @@ const Map: NextPage = () => {
 
   return (
     <>
-      <Head>
-        <title>Map of shelters</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <MapContainer>
         <Mapbox center={center} zoom={zoom}>
           <>

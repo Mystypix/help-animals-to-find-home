@@ -2,9 +2,7 @@ import Image from '../common/Image'
 import styled from 'styled-components'
 
 export const StyledWrapper = styled.div`
-  position: absolute;
-  right: 30px;
-  top: 10px;
+  position: relative
 `
 
 export const StyledAvatar = styled(Image)`
