@@ -44,7 +44,9 @@ const ShelterSetting = (props: any) => {
         const {userData} = props
         e.preventDefault()
         const {name, address, phone, email, description} = inputs
-
+        const geocoding = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURI(address)}.json?access_token=pk.eyJ1Ijoiam9hb2FobWFkIiwiYSI6ImNsMGFyZXd2ODBwdDIzanF1bGpmcjU0cjYifQ.pqPWPB4CKcd0WJFsyfARtQ`).then((response) => response.json())
+        const coordinations = geocoding.features[0].center
+        
         try {
             const ref = doc(db, 'users', userData.uid)
             await setDoc(ref, {
@@ -53,6 +55,7 @@ const ShelterSetting = (props: any) => {
                 phone,
                 email,
                 description,
+                coordinations
             }, {merge: true})
           
             setDirty(false)
