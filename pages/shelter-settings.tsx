@@ -97,6 +97,19 @@ const ShelterSetting = (props: any) => {
             <form onSubmit={handleSubmit}>
                 <div>
                     <SectionTitle>Image</SectionTitle>
+                    {inputs.image && <Image src={inputs.image} width='572' height='560' />}
+                    <label htmlFor="shelter-image">
+                        <Input
+                            style={{ display: 'none' }}
+                            id="shelter-image"
+                            name="shelter-image"
+                            type="file"
+                            onChange={handleImageUpload}
+                        />
+                        <Button color="secondary" variant="contained" component="span">
+                            Upload button
+                        </Button>
+                    </label>
                 </div>
                 <div>
                     <SectionTitle>General</SectionTitle>
@@ -113,9 +126,7 @@ const ShelterSetting = (props: any) => {
                     <Input name='phone' onChange={handleInputChange} value={inputs.phone} />
                     <InputLabel htmlFor="name">Website</InputLabel>
                     <Input name='website' onChange={handleInputChange} value={inputs.website} />
-                    <Button type="submit" disabled={!dirty}>Save changes</Button>
-                    {inputs.image && <Image src={inputs.image} width='572' height='560' />}
-                    <input type="file" name="shelter-image" onChange={handleImageUpload} />
+                    <Button type="submit" disabled={!dirty}>Save changes</Button>                    
                 </div>
             </form>
             <Snackbar open={snackBarOpen} autoHideDuration={6000} onClose={handleCloseSnackBar}>

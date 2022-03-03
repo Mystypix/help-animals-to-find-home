@@ -6,7 +6,6 @@ import { useState, useEffect } from "react"
 import CircularProgress from '@mui/material/CircularProgress';
 import { getStorage, ref, getDownloadURL } from "firebase/storage"
 
-
 const withAuth = (Component: any) => {
     const AuthenticatedComponent = () => {
         const router = useRouter();
@@ -30,7 +29,7 @@ const withAuth = (Component: any) => {
                     return imgUrl
                 } catch (err: any) {
                     if (err.code === 'storage/object-not-found') {
-                        return ''
+                        return await getDownloadURL(ref(storage, `default-shelter`))
                     }
                     console.log(err)
                 }
@@ -52,7 +51,7 @@ const withAuth = (Component: any) => {
                 getUser();
             }
         }, [loading, authUser]);
-        return Object.keys(data).length && !loading ? <Component userData={data} /> : <CircularProgress />; // Render whatever you want while the authentication occurs
+        return Object.keys(data).length && !loading ? <Component userData={data} /> : <CircularProgress size={500}/>
     };
 
     return AuthenticatedComponent;
