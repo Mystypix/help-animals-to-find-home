@@ -7,17 +7,17 @@ export interface ICard {
   image?: string
   alt?: string
   url?: string
-  name: string
+  children?: React.ReactNode
 }
 
-const Card = ({ image, alt, url, name }: ICard) => {
+const Card = ({ image, alt, url, children }: ICard) => {
   const router = useRouter()
 
   return (
     <Container onClick={() => url && router.push(url)}>
       <CardActionArea>
         {image && <CardMedia component="img" image={image} alt={alt} />}
-        <div>{name}</div>
+        {children}
       </CardActionArea>
     </Container>
   )
@@ -31,4 +31,5 @@ const Container = styled(MUICard)`
     filter: brightness(1.1);
     transform: scale(0.95);
   }
+  box-shadow: 0px 4px 14px 0px #0000000f;
 `

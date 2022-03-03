@@ -9,9 +9,10 @@
       "https://picsum.photos/seed/12314df/300/200"
     ],
     "registeredAt": "2022-03-03T06:38:36.958Z",
-    "birthday": "'2021-03-03T06:38:36.958Z'",
+    "birthday": "2021-03-03T06:38:36.958Z",
     "description": "Playful",
-    "species": "dog"
+    "species": "dog",
+    "breed": "caramel colored stray dog hustler"
   },
   {
     "id": 2352352346,
@@ -23,9 +24,10 @@
       "https://picsum.photos/seed/12314df/300/200"
     ],
     "registeredAt": "2022-03-03T06:38:36.958Z",
-    "birthday": "'2021-03-03T06:38:36.958Z'",
+    "birthday": "2021-03-03T06:38:36.958Z",
     "description": "Playful",
-    "species": "dog"
+    "species": "dog",
+    "breed": "caramel colored stray dog hustler"
   },
   {
     "id": 3461235235,
@@ -37,9 +39,10 @@
       "https://picsum.photos/seed/12314df/300/200"
     ],
     "registeredAt": "2022-03-03T06:38:36.958Z",
-    "birthday": "'2021-03-03T06:38:36.958Z'",
+    "birthday": "2021-03-03T06:38:36.958Z",
     "description": "Playful",
-    "species": "dog"
+    "species": "dog",
+    "breed": "caramel colored stray dog hustler"
   },
   {
     "id": 26246234234,
@@ -51,9 +54,10 @@
       "https://picsum.photos/seed/12314df/300/200"
     ],
     "registeredAt": "2022-03-03T06:38:36.958Z",
-    "birthday": "'2021-03-03T06:38:36.958Z'",
+    "birthday": "2021-03-03T06:38:36.958Z",
     "description": "Playful",
-    "species": "dog"
+    "species": "dog",
+    "breed": "caramel colored stray dog hustler"
   },
   {
     "id": 14153151,
@@ -65,9 +69,10 @@
       "https://picsum.photos/seed/12314df/300/200"
     ],
     "registeredAt": "2022-03-03T06:38:36.958Z",
-    "birthday": "'2021-03-03T06:38:36.958Z'",
+    "birthday": "2021-03-03T06:38:36.958Z",
     "description": "Playful",
-    "species": "dog"
+    "species": "dog",
+    "breed": "caramel colored stray dog hustler"
   },
   {
     "id": 135136134,
@@ -79,9 +84,10 @@
       "https://picsum.photos/seed/12314df/300/200"
     ],
     "registeredAt": "2022-03-03T06:38:36.958Z",
-    "birthday": "'2021-03-03T06:38:36.958Z'",
+    "birthday": "2021-03-03T06:38:36.958Z",
     "description": "Playful",
-    "species": "dog"
+    "species": "dog",
+    "breed": "caramel colored stray dog hustler"
   },
   {
     "id": 1231231515,
@@ -93,9 +99,10 @@
       "https://picsum.photos/seed/12314df/300/200"
     ],
     "registeredAt": "2022-03-03T06:38:36.958Z",
-    "birthday": "'2021-03-03T06:38:36.958Z'",
+    "birthday": "2021-03-03T06:38:36.958Z",
     "description": "Playful",
-    "species": "dog"
+    "species": "dog",
+    "breed": "caramel colored stray dog hustler"
   },
   {
     "id": 5437474567,
@@ -107,8 +114,9 @@
       "https://picsum.photos/seed/12314df/300/200"
     ],
     "registeredAt": "2022-03-03T06:38:36.958Z",
-    "birthday": "'2021-03-03T06:38:36.958Z'",
+    "birthday": "2021-03-03T06:38:36.958Z",
     "description": "Playful",
-    "species": "dog"
+    "species": "dog",
+    "breed": "caramel colored stray dog hustler"
   }
 ]

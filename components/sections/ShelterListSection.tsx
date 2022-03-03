@@ -1,17 +1,19 @@
 import React, { useState } from 'react'
-import Card, { ICard } from '../common/CardImage'
+import Card, { ICard } from '../common/Card'
 import Grid from '../common/Grid'
 import Section from '../common/Section'
 import { getFirestore, collection } from 'firebase/firestore'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 
 const ShelterListSection = () => {
-  const [shelters, loading, error] = useCollectionData(collection(getFirestore(), 'users'))
+  const [shelters, loading, error] = useCollectionData(
+    collection(getFirestore(), 'users')
+  )
 
   return (
     <Section
       title="Featured Shelters"
-      backgroundColor="#eee"
+      backgroundColor="var(--color-primary-soft)"
       footerLink={{ text: 'Show more...', url: '/shelters' }}
     >
       <Grid spacing={2}>
@@ -21,7 +23,7 @@ const ShelterListSection = () => {
           <div>
             {shelters.slice(0, 6).map((shelter) => {
               const { name, id } = shelter
-              return <Card key={id} name={name} />
+              return <Card key={id} />
             })}
           </div>
         )}

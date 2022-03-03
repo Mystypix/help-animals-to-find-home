@@ -1,11 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Fredoka', sans-serif;
+  font-family: var(--font-primary);
   color: var(--color-text);
+}
+
+p {
+  font-family: var(--font-secondary);
 }
 
 a {
@@ -18,7 +23,13 @@ a {
 }
 
 :root {
-  --color-text: #48466D;
-  --color-primary: #FF9E9E;
-  --color-secondary: #B1E0DA;
+  --color-text: #48466d;
+  --color-text-secondary: #575455;
+  --color-primary: #ff9e9e;
+  --color-secondary: #b1e0da;
+  --color-primary-dark: #ed9393;
+  --color-secondary-dark: #83d1c7;
+  --font-primary: 'Fredoka', sans-serif;
+  --font-secondary: 'Inter', sans-serif;
+  --color-primary-soft: #fff8f8;
 }
