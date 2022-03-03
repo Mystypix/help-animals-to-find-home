@@ -16,12 +16,13 @@ const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
   
 
 const ShelterSetting = (props: any) => {
+    const {userData} = props
     const [inputs , setInputs] = useState({
-        name: '',
-        address: '',
-        phone: '',
-        email: '',
-        description: '',
+        name: userData.name || '',
+        address: userData.address || '',
+        phone: userData.phone || '',
+        email: userData.email || '',
+        description: userData.description || '',
     })
     const [dirty, setDirty] = useState(false)
     const [snackBarOpen, setSnackBarOpen] = useState(false);
