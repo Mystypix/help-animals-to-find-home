@@ -4,8 +4,6 @@ import { ResponsiveStyleValue } from '@mui/system'
 
 const Grid = ({
   spacing = 2,
-  xs,
-  md,
   children,
 }: {
   spacing?: Number
@@ -13,16 +11,14 @@ const Grid = ({
   md?: Number
   children: React.ReactNode
 }) => (
-  <MUIGrid
-    container
-    spacing={spacing as ResponsiveStyleValue<GridSpacing>}
-    xs={12}
-  >
-    {children.map((child: React.ReactNode, index: Number) => (
-      <MUIGrid item xs={2} md={4} key={`${index}`}>
-        {child}
-      </MUIGrid>
-    ))}
+  <MUIGrid container spacing={spacing as ResponsiveStyleValue<GridSpacing>}>
+    {children &&
+      React.Children.count(children) > 0 &&
+      React.Children.map(children, (child: React.ReactNode, index: Number) => (
+        <MUIGrid item xs={2} md={4} key={`${index}`}>
+          {child}
+        </MUIGrid>
+      ))}
   </MUIGrid>
 )
 

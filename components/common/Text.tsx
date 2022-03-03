@@ -1,8 +1,15 @@
-import * as React from 'react'
-import { Typography } from '@mui/material'
+import React, { ElementType } from 'react'
+import { Typography, TypographyVariant } from '@mui/material'
 
-const Text = ({ variant, component, children }) => (
-  <Typography variant={variant} component={component}>
+interface IText {
+  variant: TypographyVariant
+  component: ElementType
+  style: any
+  children: React.ReactNode
+}
+
+const Text = ({ variant, component, style, children }: IText) => (
+  <Typography variant={variant} component={component} style={style}>
     {children}
   </Typography>
 )
