@@ -1,14 +1,38 @@
 import Input from "../components/common/Input"
 import Button from "../components/common/Button"
-import { useState } from "react"
+import { useState, forwardRef } from "react"
 import { doc, setDoc } from "firebase/firestore"
 import { db } from '../firebase/firebase'
-import { useAuth } from '../context/auth-user-context'
+import withAuth from '../components/common/AuthComponent'
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
-const ShelterSetting = () => {
-    const { authUser } = useAuth()
-    const [inputs , setInputs] = useState({})
+const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
+    props,
+    ref,
+  ) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+  
+
+const ShelterSetting = (props: any) => {
+    const [inputs , setInputs] = useState({
+        name: '',
+        address: '',
+        phone: '',
+        email: '',
+        description: '',
+    })
     const [dirty, setDirty] = useState(false)
+    const [snackBarOpen, setSnackBarOpen] = useState(false);
+    
+    const handleCloseSnackBar = (event?: React.SyntheticEvent | Event, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setSnackBarOpen(false);
+    }
 
     const handleInputChange = ({target}: any) => {
        setInputs(state => ({...state, [target.name]: target.value}))
@@ -16,12 +40,12 @@ const ShelterSetting = () => {
     }
 
     const handleSubmit = async (e: any) => {
+        const {userData} = props
         e.preventDefault()
-        const user = authUser.user
         const {name, address, phone, email, description} = inputs
 
         try {
-            const ref = doc(db, 'users', user.uid)
+            const ref = doc(db, 'users', userData.uid)
             await setDoc(ref, {
                 name,
                 address,
@@ -31,6 +55,7 @@ const ShelterSetting = () => {
             }, {merge: true})
           
             setDirty(false)
+            setSnackBarOpen(true)
         } catch (e) {
             console.error("Error adding document: ", e);
         }
@@ -46,8 +71,13 @@ const ShelterSetting = () => {
                 <Input name='description' onChange={handleInputChange} value={inputs.description} placeholder="Description" />
                 <Button type="submit" disabled={!dirty}>Save</Button>
             </form>
+            <Snackbar open={snackBarOpen} autoHideDuration={6000} onClose={handleCloseSnackBar}>
+                <Alert onClose={handleCloseSnackBar} severity="success" sx={{ width: '100%' }}>
+                Settings Saved!
+                </Alert>
+            </Snackbar>
         </div>
     )
 }
 
-export default ShelterSetting
+export default withAuth(ShelterSetting)

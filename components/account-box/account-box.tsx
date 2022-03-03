@@ -17,7 +17,7 @@ const AccountBox = () => {
         const querySnapshot = await getDocs(q);
         return querySnapshot.empty ? {} : querySnapshot.docs[0].data()
     }
-
+    
     const user = getDBUser(authUser)
 
     return (
