@@ -5,6 +5,7 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
+    loader: "custom",
     domains: ['lh3.googleusercontent.com', 'firebasestorage.googleapis.com'],
   },
 }

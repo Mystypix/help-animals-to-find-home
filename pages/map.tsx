@@ -4,7 +4,7 @@ import Head from 'next/head'
 import Mapbox from '../components/common/Mapbox'
 import { Marker, Popup, RotationControl, ScaleControl, ZoomControl } from 'react-mapbox-gl'
 import { MapContainer, MarkerWrap, PopupBox } from './map.styles'
-import Image from 'next/image'
+import Image from '../components/image'
 import shelters from '../mocks/shelters.json'
 import { useCallback, useState } from 'react'
 

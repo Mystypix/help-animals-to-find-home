@@ -10,7 +10,7 @@ import {InputLabel} from '../components/common/input-label'
 import SectionTitle from "../components/section-title"
 import PageTitle from "../components/page-title"
 import { getStorage, ref, uploadBytes } from "firebase/storage"
-import Image from 'next/image'
+import Image from '../components/image'
 import React from 'react'
 
 const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(

@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from '../components/image'
 import React from 'react'
 import type { NextPage } from 'next'
 import {StyledIntroWraper} from './index.styles'

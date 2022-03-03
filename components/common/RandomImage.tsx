@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from '../image'
 import * as React from 'react'
 
 interface IRandomImage {
