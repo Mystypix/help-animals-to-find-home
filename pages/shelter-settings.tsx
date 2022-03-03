@@ -41,11 +41,14 @@ const ShelterSetting = (props: any) => {
     }
 
     const handleSubmit = async (e: any) => {
+        let coordinates
         const {userData} = props
         e.preventDefault()
         const {name, address, phone, email, description} = inputs
-        const geocoding = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURI(address)}.json?access_token=pk.eyJ1Ijoiam9hb2FobWFkIiwiYSI6ImNsMGFyZXd2ODBwdDIzanF1bGpmcjU0cjYifQ.pqPWPB4CKcd0WJFsyfARtQ`).then((response) => response.json())
-        const coordinations = geocoding.features[0].center
+        if (address) {
+            const geocoding = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURI(address)}.json?access_token=`).then((response) => response.json())
+            coordinates = geocoding.features ? geocoding.features[0].center : []
+        }
         
         try {
             const ref = doc(db, 'users', userData.uid)
@@ -55,7 +58,7 @@ const ShelterSetting = (props: any) => {
                 phone,
                 email,
                 description,
-                coordinations
+                ...(coordinates.length ? {coordinates} : {})
             }, {merge: true})
           
             setDirty(false)
@@ -67,12 +70,17 @@ const ShelterSetting = (props: any) => {
 
     return (
         <div>
+            <div>Shelter Settings</div>
+
             <form onSubmit={handleSubmit}>
+                <label htmlFor="name">Shelter name</label>
                 <Input name='name' onChange={handleInputChange} value={inputs.name} placeholder="Name" />
+                <label htmlFor="name">Shelter description</label>
+                <Input name='description' onChange={handleInputChange} value={inputs.description} placeholder="Description" />
+                <label htmlFor="name">Shelter description</label>
                 <Input name='address' onChange={handleInputChange} value={inputs.address} placeholder="Address" />
                 <Input name='phone' onChange={handleInputChange} value={inputs.phone} placeholder="Phone" />
                 <Input name='email' onChange={handleInputChange} value={inputs.email} placeholder="Email" />
-                <Input name='description' onChange={handleInputChange} value={inputs.description} placeholder="Description" />
                 <Button type="submit" disabled={!dirty}>Save</Button>
             </form>
             <Snackbar open={snackBarOpen} autoHideDuration={6000} onClose={handleCloseSnackBar}>

@@ -24,7 +24,7 @@ const AccountBox = () => {
         <StyledWrapper>
             <StyledAvatar onClick={() => setOpen(!open)} src={authUser.userPhoto} width='35px' height='35px' />
             {open && (
-                <StyledAccountPopUp>
+                <StyledAccountPopUp onClick={() => setOpen(false)}>
                     <Link href={user.type === 'individual' ? '/individual-settings'  : '/shelter-settings'}>Settings</Link>
                     <Button onClick={signOut}>Logout</Button>
                 </StyledAccountPopUp>
