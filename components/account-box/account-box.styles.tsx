@@ -13,6 +13,7 @@ export const StyledAvatar = styled(Image)`
 export const StyledAccountPopUp = styled.div`
   position: absolute;
   top: 100%;
+  z-index: 100;
   right: 0;
   border-radius: 5px;
   padding: 10px;
