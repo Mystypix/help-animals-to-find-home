@@ -5,7 +5,10 @@ import { doc, setDoc } from "firebase/firestore"
 import { db } from '../firebase/firebase'
 import withAuth from '../components/common/AuthComponent'
 import Snackbar from '@mui/material/Snackbar';
-import MuiAlert, { AlertProps } from '@mui/material/Alert';
+import MuiAlert, { AlertProps } from '@mui/material/Alert'
+import {InputLabel} from '../components/common/input-label'
+import SectionTitle from "../components/section-title"
+import PageTitle from "../components/page-title"
 
 const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
     props,
@@ -72,26 +75,26 @@ const ShelterSetting = (props: any) => {
 
     return (
         <div>
-            <div>Shelter Settings</div>
+            <PageTitle>Shelter Settings</PageTitle>
 
             <form onSubmit={handleSubmit}>
                 <div>
-                    <div>Image</div>
+                    <SectionTitle>Image</SectionTitle>
                 </div>
                 <div>
-                    <div>General</div>
-                    <label htmlFor="name">Shelter name</label>
+                    <SectionTitle>General</SectionTitle>
+                    <InputLabel htmlFor="name">Shelter name</InputLabel>
                     <Input name='name' onChange={handleInputChange} value={inputs.name} placeholder="Name" />
-                    <label htmlFor="name">Shelter description</label>
+                    <InputLabel htmlFor="name">Shelter description</InputLabel>
                     <Input name='description' onChange={handleInputChange} value={inputs.description} placeholder="Description" />
-                    <label htmlFor="name">Shelter description</label>
+                    <InputLabel htmlFor="name">Shelter description</InputLabel>
                     <Input name='address' onChange={handleInputChange} value={inputs.address} placeholder="Address" />
-                    <div>Contact</div>
-                    <label htmlFor="name">Email</label>
+                    <SectionTitle>Contact</SectionTitle>
+                    <InputLabel htmlFor="name">Email</InputLabel>
                     <Input name='email' onChange={handleInputChange} value={inputs.email} />
-                    <label htmlFor="name">Phone</label>
+                    <InputLabel htmlFor="name">Phone</InputLabel>
                     <Input name='phone' onChange={handleInputChange} value={inputs.phone} />
-                    <label htmlFor="name">Website</label>
+                    <InputLabel htmlFor="name">Website</InputLabel>
                     <Input name='website' onChange={handleInputChange} value={inputs.website} />
                     <Button type="submit" disabled={!dirty}>Save changes</Button>
                 </div>

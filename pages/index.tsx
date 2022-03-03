@@ -14,8 +14,8 @@ const Home: NextPage = () => {
         </div>
         <Image src='/images/intro.png' width='572' height='560' />
       </StyledIntroWraper>
-      <ShelterListSection />
       <NewestPetSection />
+      <ShelterListSection />
     </>
   )
 }
