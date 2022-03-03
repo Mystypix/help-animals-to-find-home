@@ -9,6 +9,7 @@ export default function Image(props: any) {
     <NextImage
       {...props}
       loader={customLoader}
+      unoptimized={true}
     />
   )
 }

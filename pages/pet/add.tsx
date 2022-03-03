@@ -11,7 +11,7 @@ import SectionTitle from "../../components/section-title"
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage"
 import React from 'react'
 import { v4 as uuidv4 } from 'uuid';
-import Image from '../../components/image'
+import Image from '../../components/common/Image'
 
 const addPet = (props: any) => {
     const [dirty, setDirty] = useState(false)

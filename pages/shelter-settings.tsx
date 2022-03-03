@@ -102,10 +102,6 @@ const ShelterSetting = (props: any) => {
   }
 
   return (
-    <div>
-      <PageTitle>Shelter Settings</PageTitle>
-
-      <form onSubmit={handleSubmit}>
         <div>
             <PageTitle>Shelter Settings</PageTitle>
             <form onSubmit={handleSubmit}>
@@ -148,67 +144,6 @@ const ShelterSetting = (props: any) => {
                 </Alert>
             </Snackbar>
         </div>
-        <div>
-          <SectionTitle>General</SectionTitle>
-          <InputLabel htmlFor="name">Shelter name</InputLabel>
-          <Input
-            name="name"
-            onChange={handleInputChange}
-            value={inputs.name}
-            placeholder="Name"
-          />
-          <InputLabel htmlFor="name">Shelter description</InputLabel>
-          <Input
-            name="description"
-            onChange={handleInputChange}
-            value={inputs.description}
-            placeholder="Description"
-          />
-          <InputLabel htmlFor="name">Shelter description</InputLabel>
-          <Input
-            name="address"
-            onChange={handleInputChange}
-            value={inputs.address}
-            placeholder="Address"
-          />
-          <SectionTitle>Contact</SectionTitle>
-          <InputLabel htmlFor="name">Email</InputLabel>
-          <Input
-            name="email"
-            onChange={handleInputChange}
-            value={inputs.email}
-          />
-          <InputLabel htmlFor="name">Phone</InputLabel>
-          <Input
-            name="phone"
-            onChange={handleInputChange}
-            value={inputs.phone}
-          />
-          <InputLabel htmlFor="name">Website</InputLabel>
-          <Input
-            name="website"
-            onChange={handleInputChange}
-            value={inputs.website}
-          />
-          <Button type="submit" disabled={!dirty}>
-            Save changes
-          </Button>
-        </div>
-      </form>
-      <Snackbar
-        open={snackBarOpen}
-        autoHideDuration={6000}
-        onClose={handleCloseSnackBar}
-      >
-        <Alert
-          onClose={handleCloseSnackBar}
-          severity="success"
-          sx={{ width: '100%' }}
-        >
-          Action Sucessfull!
-        </Alert>
-      </Snackbar>
-    </div>
   )
 }
 

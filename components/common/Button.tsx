@@ -7,6 +7,8 @@ interface IButton {
   color?: 'primary' | 'secondary'
   url?: string
   children: React.ReactNode
+  type?: string
+  disabled?: boolean
 }
 
 function Button({
@@ -14,6 +16,8 @@ function Button({
   color = 'primary',
   url,
   children,
+  type,
+  disabled,
 }: IButton) {
   const buttonProps = {
     variant: 'contained',
@@ -21,6 +25,8 @@ function Button({
     backgroundColor,
     color,
     href: url,
+    type,
+    disabled,
   }
   return <Container {...buttonProps}>{children}</Container>
 }
