@@ -35,16 +35,14 @@ const LoginAndRegister: NextPage = () => {
         <title>Help animals to find home - registration</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Layout>
-        {loading && <div>loading...</div>}
-        {!authUser && (
-          <div>
-            <button onClick={signInWithGoogle}>Login</button>
-            <button onClick={handleRegisterShelter}>Register as a shelter</button>
-            <button onClick={handleRegisterIndividual}>Register as an individual</button>
-          </div>
-        )}
-      </Layout>
+      {loading && <div>loading...</div>}
+      {!authUser && (
+        <div>
+          <button onClick={signInWithGoogle}>Login</button>
+          <button onClick={handleRegisterShelter}>Register as a shelter</button>
+          <button onClick={handleRegisterIndividual}>Register as an individual</button>
+        </div>
+      )}
     </div>
   )
 }
