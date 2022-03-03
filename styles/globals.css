@@ -14,3 +14,15 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.d-flex {
+  display: flex;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
