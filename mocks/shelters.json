@@ -1,42 +1,58 @@
 [
   {
+    "id": "1",
     "name": "Dog Lovers",
     "userName": "dog_lovers",
-    "image": "https://picsum.photos/seed/werw/300/200"
+    "image": "https://picsum.photos/seed/werw/300/200",
+    "coordinates": [14.41182305674026, 50.103688059167794]
   },
   {
+    "id": "2",
     "name": "Cat Conquers",
     "userName": "catconquers",
-    "image": "https://picsum.photos/seed/1tr1gd/300/200"
+    "image": "https://picsum.photos/seed/1tr1gd/300/200",
+    "coordinates": [14.536856715823557, 50.06667311514513]
   },
   {
+    "id": "3",
     "name": "Petverse",
     "userName": "petverse",
-    "image": "https://picsum.photos/seed/asfasg/300/200"
+    "image": "https://picsum.photos/seed/asfasg/300/200",
+    "coordinates": [14.490340266123647, 50.11233263973771]
   },
   {
+    "id": "4",
     "name": "Help a Little Friend",
     "userName": "helpalittlefriend",
-    "image": "https://picsum.photos/seed/23425t/300/200"
+    "image": "https://picsum.photos/seed/23425t/300/200",
+    "coordinates": [14.404066167107578, 50.07917641546827]
   },
   {
+    "id": "5",
     "name": "Small Friends",
     "userName": "smallfriends",
-    "image": "https://picsum.photos/seed/fdwfs/300/200"
+    "image": "https://picsum.photos/seed/fdwfs/300/200",
+    "coordinates": [14.379416424531554, 50.11156775472084]
   },
   {
+    "id": "6",
     "name": "Katkat",
     "userName": "katkat",
-    "image": "https://picsum.photos/seed/134tgfdg/300/200"
+    "image": "https://picsum.photos/seed/134tgfdg/300/200",
+    "coordinates": [14.445670104400893, 50.045912808045344]
   },
   {
+    "id": "7",
     "name": "Little Love",
     "userName": "little_love",
-    "image": "https://picsum.photos/seed/1tfgrehg/300/200"
+    "image": "https://picsum.photos/seed/1tfgrehg/300/200",
+    "coordinates": [14.362451121964904, 50.05230307661897]
   },
   {
+    "id": "8",
     "name": "Prague Pet Shelter",
     "userName": "prague_pet_shelter",
-    "image": "https://picsum.photos/seed/13t213/300/200"
+    "image": "https://picsum.photos/seed/13t213/300/200",
+    "coordinates": [14.873589914333888, 50.083432930861434]
   }
 ]
