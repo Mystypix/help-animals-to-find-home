@@ -14,16 +14,18 @@ const ShelterSetting = (props: any) => {
         router.push('/pet/add')
     }
 
+    const pets: Array<any> = userData.pets || []
+
     return (
         <div>
-            <PageTitle>My Pets</PageTitle>
+            <PageTitle>My Pets ({pets.length})</PageTitle>
             <Button variant="contained" onClick={handleAddNewPet}>
                 Add new pet
             </Button>
             <Grid spacing={2}>
-                {(userData.pets || []).map((pet: any) => {
+                {pets.map((pet) => {
                 const { id, profileImg, name, breed } = pet
-                const url = `/pet/edit/${id}`
+                const url = `/pet/${id}`
                 return <Card image={profileImg} name={name} url={url} species={breed} key={id} alt={`card-${name}`} />
                 })}
             </Grid>

@@ -1,40 +1,29 @@
 import Button from '@mui/material/Button'
-import withAuth from '../../components/common/AuthComponent'
-import PageTitle from "../../components/page-title"
+import withAuth from '../../../components/common/AuthComponent'
+import PageTitle from "../../../components/page-title"
 import { useRouter } from 'next/router'
-import { useState, useEffect } from "react"
-import Input from "../../components/common/Input"
+import { useState } from "react"
+import Input from "../../../components/common/Input"
 import { doc, setDoc } from "firebase/firestore"
-import { db } from '../../firebase/firebase'
-import {InputLabel} from '../../components/common/input-label'
-import SectionTitle from "../../components/section-title"
+import { db } from '../../../firebase/firebase'
+import {InputLabel} from '../../../components/common/input-label'
+import SectionTitle from "../../../components/section-title"
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage"
 import React from 'react'
 import { v4 as uuidv4 } from 'uuid';
-import Image from '../../components/common/Image'
+import Image from '../../../components/common/Image'
 
-const AddPet = (props: any) => {
-    const id = uuidv4()
+const editPet = (props: any) => {
+    const [dirty, setDirty] = useState(false)
     const storage = getStorage()
     const router = useRouter()
-    const [dirty, setDirty] = useState(false)
-    const [inputs , setInputs] = useState({
-        name: '',
-        type: '',
-        gender: '',
-        age: '',
-        size: '',
-        breed: '',
-        description: '',
-        profileImg: '',
-    })
-
-    useEffect(() => {
-        const getImg = async () => {
-            setInputs({...inputs, profileImg: await getDownloadURL(ref(storage, `default-pet`))})
-        };
-            getImg();
-    }, []);
+    const { id } = router.query
+    const {userData} = props
+    const petInfo = userData.pets?.find(((pet) => pet.id === id))
+    if (!petInfo) {
+        router.push('/my-pets')
+    }
+    const [inputs , setInputs] = useState(petInfo)
 
     const handleInputChange = ({target}: any) => {
         setInputs(state => ({...state, [target.name]: target.value}))
@@ -59,9 +48,27 @@ const AddPet = (props: any) => {
         
         try {
             const usersRef = doc(db, 'users', userData.uid)
-            const currentPets = userData.pets || []
+            const currentPets = userData.pets.filter((pet) => pet.id !== id)
             await setDoc(usersRef, {
                 pets: [...currentPets, {...inputs, id: id}]
+            }, {merge: true})
+          
+            router.push('/my-pets')
+            setDirty(false)
+        } catch (e) {
+            console.error("Error adding document: ", e);
+        }
+    }
+
+    const handleRemove = async (e: any) => {
+        const {userData} = props
+        e.preventDefault()
+        
+        try {
+            const usersRef = doc(db, 'users', userData.uid)
+            const currentPets = userData.pets.filter((pet) => pet.id !== id)
+            await setDoc(usersRef, {
+                pets: [...currentPets]
             }, {merge: true})
           
             router.push('/my-pets')
@@ -74,6 +81,9 @@ const AddPet = (props: any) => {
     return (
         <div>
             <PageTitle><a onClick={() => router.push('/my-pets')} style={{textDecoration: 'underline', cursor: 'pointer'}}>My Pets</a>/ Add New Pet</PageTitle>
+            <Button color="secondary" variant="contained" onClick={handleRemove}>
+                Remove Pet
+            </Button>
             <form onSubmit={handleSubmit}>
                 <div>
                     <SectionTitle>Image</SectionTitle>
@@ -113,4 +123,4 @@ const AddPet = (props: any) => {
     )
 }
 
-export default withAuth(AddPet)
+export default withAuth(editPet)
