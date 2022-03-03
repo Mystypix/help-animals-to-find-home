@@ -51,7 +51,7 @@ const withAuth = (Component: any) => {
             if (!loading) {
                 getUser();
             }
-        }, [loading, authUser]);
+        }, [loading, authUser, router]);
         return Object.keys(data).length && !loading ? <Component userData={data} /> : <CircularProgress size={500}/>
     };
 

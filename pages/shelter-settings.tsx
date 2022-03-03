@@ -98,7 +98,7 @@ const ShelterSetting = (props: any) => {
             <form onSubmit={handleSubmit}>
                 <div>
                     <SectionTitle>Image</SectionTitle>
-                    {inputs.image && <Image src={inputs.image} width='572' height='560' />}
+                    {inputs.image && <Image src={inputs.image} width='572' height='560' alt='Animal image' />}
                     <label htmlFor="shelter-image">
                         <Input
                             style={{ display: 'none' }}

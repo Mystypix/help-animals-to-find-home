@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import * as React from 'react'
 
 interface IRandomImage {
@@ -14,8 +15,10 @@ const RandomImage = ({
   const randomSeed = (Math.random() * 1000).toString()
   const seed = customSeed || randomSeed
   return (
-    <img
+    <Image
       src={`https://picsum.photos/seed/slide-${seed}/${width}/${height}`}
+      width={width}
+      height={height}
       alt={seed}
     />
   )

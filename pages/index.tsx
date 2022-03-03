@@ -13,7 +13,7 @@ const Home: NextPage = () => {
           <h1>Dream about best friend?</h1>
           <p>Our best beauties waiting for a home</p>
         </div>
-        <Image src='/images/intro.png' width='572' height='560' />
+        <Image src='/images/intro.png' width='572' height='560' alt='Into image - dog' />
       </StyledIntroWraper>
       <NewestPetSection />
       <ShelterListSection />

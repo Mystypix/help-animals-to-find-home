@@ -1,9 +1,11 @@
-import Link from 'next/link'
+import NextLink from 'next/link'
 import {StyledLink} from './link.styles'
 import React from 'react'
 
-export default ({ href, children }: any) => (
-  <Link href={href} passHref>
+const Link = ({ href, children }: any) => (
+  <NextLink href={href} passHref>
     <StyledLink>{children}</StyledLink>
-  </Link>
+  </NextLink>
 )
+
+export default Link
