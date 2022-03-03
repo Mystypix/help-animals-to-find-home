@@ -27,9 +27,7 @@ const LoginAndRegister: NextPage = () => {
         const ref = doc(db, 'users', user.uid)
         setDoc(ref, {
           id: user.uid,
-          email: user.email,
           type: 'shelter',
-          photo: user.photoURL
         });
       }
       router.push('/shelter-settings');
@@ -48,9 +46,7 @@ const LoginAndRegister: NextPage = () => {
         const ref = doc(db, 'users', user.uid)
         await setDoc(ref, {
           id: user.uid,
-          email: user.email,
           type: 'individual',
-          photo: user.photoURL
         });
       }
       router.push('/individual-settings');
