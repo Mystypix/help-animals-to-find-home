@@ -1,19 +1,32 @@
 import type { NextPage } from 'next'
-import { useState } from 'react'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Layout from '../components/layout'
-import { signInWithGoogle } from '../firebase/firebase'
+import { useAuth } from '../context/auth-user-context'
+import { useRouter } from 'next/router'
 
 const LoginAndRegister: NextPage = () => {   
-  const [user, setUser] = useState(null)
-  
-  const handleRegister = async () => {
-    const userObj = await signInWithGoogle()
+  const { authUser, loading, signInWithGoogle } = useAuth()
+  const router = useRouter()
 
-    if (userObj) {
-      setUser(userObj)
-    }
+  const handleRegisterShelter = () => {
+    signInWithGoogle()
+    .then(authUser => {
+      router.push('/shelter-settings');
+    })
+    .catch(error => {
+      console.error(error)
+    })
+  }
+
+  const handleRegisterIndividual = () => {
+    signInWithGoogle()
+    .then(authUser => {
+      router.push('/individual-settings');
+    })
+    .catch(error => {
+      console.error(error)
+    })
   }
   
   return (
@@ -23,18 +36,13 @@ const LoginAndRegister: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        {!user && (
+        {loading && <div>loading...</div>}
+        {!authUser && (
           <div>
             <button onClick={signInWithGoogle}>Login</button>
-            <button onClick={handleRegister}>Register</button>
+            <button onClick={handleRegisterShelter}>Register as a shelter</button>
+            <button onClick={handleRegisterIndividual}>Register as an individual</button>
           </div>
-        )}
-        {user && (
-          <form>
-            <input placeholder='name' />
-            <input placeholder='adress' />
-            <input placeholder='identifier' />
-          </form>
         )}
       </Layout>
     </div>
