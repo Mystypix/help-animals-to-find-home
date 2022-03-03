@@ -9,6 +9,7 @@ interface IButton {
   children: React.ReactNode
   type?: string
   disabled?: boolean
+  onClick?: any
 }
 
 function Button({

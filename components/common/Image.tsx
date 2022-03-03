@@ -1,4 +1,5 @@
 import NextImage from "next/image"
+import React from 'react'
 
 const customLoader = ({ src }: any) => {
   return src

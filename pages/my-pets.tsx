@@ -4,6 +4,7 @@ import PageTitle from "../components/page-title"
 import Grid from '../components/common/Grid'
 import Card from '../components/cards/PetCard'
 import { useRouter } from 'next/router'
+import React from 'react'
 
 const ShelterSetting = (props: any) => {
     const {userData} = props
@@ -20,7 +21,7 @@ const ShelterSetting = (props: any) => {
                 Add new pet
             </Button>
             <Grid spacing={2}>
-                {(userData.pets || []).map((pet) => {
+                {(userData.pets || []).map((pet: any) => {
                 const { id, profileImg, name, breed } = pet
                 const url = `/pet/edit/${id}`
                 return <Card image={profileImg} name={name} url={url} species={breed} key={id} alt={`card-${name}`} />

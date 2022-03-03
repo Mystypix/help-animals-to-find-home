@@ -13,7 +13,7 @@ import React from 'react'
 import { v4 as uuidv4 } from 'uuid';
 import Image from '../../components/common/Image'
 
-const addPet = (props: any) => {
+const AddPet = (props: any) => {
     const [dirty, setDirty] = useState(false)
     const [inputs , setInputs] = useState({
         name: '',
@@ -106,4 +106,4 @@ const addPet = (props: any) => {
     )
 }
 
-export default withAuth(addPet)
+export default withAuth(AddPet)
