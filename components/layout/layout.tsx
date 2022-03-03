@@ -1,15 +1,15 @@
-import React from "react"
 import Navigation from "../navigation"
+import { StyledContent, StyledMain } from "./layout.styles"
 
 type LayoutPropsT = {
     children: React.ReactNode
 }
 
 const Layout = ({children}: LayoutPropsT) => (
-    <div>
+    <StyledMain>
         <Navigation />
-        <div>{children}</div>
-    </div>
+        <StyledContent>{children}</StyledContent>
+    </StyledMain>
 )
 
 export default Layout
