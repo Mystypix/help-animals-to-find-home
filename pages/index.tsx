@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import React from 'react'
 import type { NextPage } from 'next'
 import {StyledIntroWraper} from './index.styles'
 import ShelterListSection from '../components/sections/ShelterListSection'

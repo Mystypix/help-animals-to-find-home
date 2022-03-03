@@ -11,6 +11,7 @@ import SectionTitle from "../components/section-title"
 import PageTitle from "../components/page-title"
 import { getStorage, ref, uploadBytes } from "firebase/storage"
 import Image from 'next/image'
+import React from 'react'
 
 const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
     props,
@@ -106,7 +107,7 @@ const ShelterSetting = (props: any) => {
                             type="file"
                             onChange={handleImageUpload}
                         />
-                        <Button color="secondary" variant="contained" component="span">
+                        <Button color="secondary" variant="contained">
                             Upload button
                         </Button>
                     </label>

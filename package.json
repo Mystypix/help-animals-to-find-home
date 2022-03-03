@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "tsc": "tsc --jsx react"
   },
   "dependencies": {
     "@emotion/react": "^11.8.1",
@@ -15,6 +16,7 @@
     "@mui/material": "^5.4.4",
     "@mui/styled-engine-sc": "^5.4.2",
     "@mui/types": "^7.1.2",
+    "@types/react-map-gl": "^6.1.2",
     "@types/styled-components": "^5.1.24",
     "firebase": "^9.6.7",
     "mapbox-gl": "^2.7.0",

@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import React from 'react'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { useAuth } from '../context/auth-user-context'

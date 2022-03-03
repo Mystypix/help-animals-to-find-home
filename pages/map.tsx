@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import React from 'react'
 import Head from 'next/head'
 import Mapbox from '../components/common/Mapbox'
 import { Marker, Popup, RotationControl, ScaleControl, ZoomControl } from 'react-mapbox-gl'

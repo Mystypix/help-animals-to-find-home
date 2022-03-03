@@ -1,4 +1,5 @@
 import Navigation from "../navigation"
+import React from 'react'
 import { StyledContent, StyledMain } from "./layout.styles"
 
 type LayoutPropsT = {

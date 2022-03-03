@@ -7,7 +7,7 @@ export interface ICard {
   image?: string
   alt?: string
   url?: string
-  name: string
+  name?: string
 }
 
 const Card = ({ image, alt, url, name }: ICard) => {
