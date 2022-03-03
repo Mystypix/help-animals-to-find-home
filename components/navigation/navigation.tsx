@@ -1,28 +1,29 @@
-import Link from 'next/link'
-import React from 'react'
-import styled from 'styled-components'
+import Link from '../link'
+import {StyledNavigation} from './navigation.styles'
+import { useAuth } from '../../context/auth-user-context'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 
-const StyledNavigation = styled.nav`
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    padding: 0 30px;
-    width: 100vw;
-    height: 60px;
-    background: gray;
-`
+const Navigation = () => {
+    const { authUser, loading, signOut } = useAuth()
+    const router = useRouter()
 
-const Navigation = () => (
-    <StyledNavigation>
-        <Link href='/'>Logo</Link>
-        <div style={{flex: '1 1 auto'}} />
-        <Link href='/map'>Map</Link>
-        <Link href='/shelters'>Shelters</Link>
-        <Link href='/pets'>Pets</Link>
-        <Link href='/sign-in'>Sign in</Link>
-    </StyledNavigation>
-)
+    // Listen for changes on loading and authUser, redirect if needed
+    // useEffect(() => {
+    //     if (!loading && !authUser) router.push('/')
+    // }, [authUser, loading])
+
+    return (
+        <StyledNavigation>
+            <Link href='/'>Logo</Link>
+            <div style={{flex: '1 1 auto'}} />
+            <Link href='/map'>Map</Link>
+            <Link href='/shelters'>Shelters</Link>
+            <Link href='/pets'>Pets</Link>
+            {!authUser && <Link href='/login-and-register'>Login/Register</Link>}
+            {authUser && <button onClick={signOut}>Log out</button>}
+        </StyledNavigation>
+    )
+}
 
 export default Navigation
