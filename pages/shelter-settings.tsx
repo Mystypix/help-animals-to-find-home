@@ -9,6 +9,8 @@ import MuiAlert, { AlertProps } from '@mui/material/Alert'
 import {InputLabel} from '../components/common/input-label'
 import SectionTitle from "../components/section-title"
 import PageTitle from "../components/page-title"
+import { getStorage, ref, uploadBytes } from "firebase/storage"
+import Image from 'next/image'
 
 const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
     props,
@@ -16,7 +18,7 @@ const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
   ) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
-  
+
 
 const ShelterSetting = (props: any) => {
     const {userData} = props
@@ -27,9 +29,11 @@ const ShelterSetting = (props: any) => {
         website: userData.website || '',
         email: userData.email || '',
         description: userData.description || '',
+        image: userData.shelterImg,
     })
     const [dirty, setDirty] = useState(false)
     const [snackBarOpen, setSnackBarOpen] = useState(false);
+    const storage = getStorage();
     
     const handleCloseSnackBar = (event?: React.SyntheticEvent | Event, reason?: string) => {
         if (reason === 'clickaway') {
@@ -44,6 +48,19 @@ const ShelterSetting = (props: any) => {
        setDirty(true)
     }
 
+    const handleImageUpload = async ({target}: any) => {
+        if (target.files && target.files[0]) {
+            const storageRef = ref(storage, `${userData.id}-shelter`);
+
+            let img = target.files[0]
+
+            setInputs({...inputs, image: URL.createObjectURL(img)})
+            uploadBytes(storageRef, img).then((snapshot) => {
+                setSnackBarOpen(true)
+              });
+          }
+     }
+
     const handleSubmit = async (e: any) => {
         let coordinates
         const {userData} = props
@@ -55,8 +72,8 @@ const ShelterSetting = (props: any) => {
         }
         
         try {
-            const ref = doc(db, 'users', userData.uid)
-            await setDoc(ref, {
+            const usersRef = doc(db, 'users', userData.uid)
+            await setDoc(usersRef, {
                 name,
                 address,
                 phone,
@@ -97,11 +114,13 @@ const ShelterSetting = (props: any) => {
                     <InputLabel htmlFor="name">Website</InputLabel>
                     <Input name='website' onChange={handleInputChange} value={inputs.website} />
                     <Button type="submit" disabled={!dirty}>Save changes</Button>
+                    {inputs.image && <Image src={inputs.image} width='572' height='560' />}
+                    <input type="file" name="shelter-image" onChange={handleImageUpload} />
                 </div>
             </form>
             <Snackbar open={snackBarOpen} autoHideDuration={6000} onClose={handleCloseSnackBar}>
                 <Alert onClose={handleCloseSnackBar} severity="success" sx={{ width: '100%' }}>
-                Settings Saved!
+                Action Sucessfull!
                 </Alert>
             </Snackbar>
         </div>

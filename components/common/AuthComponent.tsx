@@ -4,6 +4,7 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import { useRouter } from 'next/router'
 import { useState, useEffect } from "react"
 import CircularProgress from '@mui/material/CircularProgress';
+import { getStorage, ref, getDownloadURL } from "firebase/storage"
 
 
 const withAuth = (Component: any) => {
@@ -19,13 +20,32 @@ const withAuth = (Component: any) => {
             
                 const querySnapshot = await getDocs(q);
                 return querySnapshot.empty ? null : querySnapshot.docs[0].data()
-              }
+            }
+
+            const getShelterImg = async (userData: any) => {
+                const storage = getStorage();
+                const imgRef = ref(storage, `${userData.id}-shelter`)
+                try {
+                    const imgUrl = await getDownloadURL(ref(storage, `${userData.id}-shelter`))
+                    return imgUrl
+                } catch (err: any) {
+                    if (err.code === 'storage/object-not-found') {
+                        return ''
+                    }
+                    console.log(err)
+                }
+            }
+
             const getUser = async () => {
                 const userData = await getDBUser(authUser);
                 if (!userData) {
                     router.push('/');
                 } else {
-                    setData({...authUser, ...userData});
+                    setData({
+                        ...authUser,
+                        ...userData,
+                        shelterImg: await getShelterImg(userData),
+                    });
                 }  
             };
             if (!loading) {
