@@ -25,7 +25,7 @@ const withAuth = (Component: any) => {
                 const storage = getStorage();
                 const imgRef = ref(storage, `${userData.id}-shelter`)
                 try {
-                    const imgUrl = await getDownloadURL(ref(storage, `${userData.id}-shelter`))
+                    const imgUrl = await getDownloadURL(imgRef)
                     return imgUrl
                 } catch (err: any) {
                     if (err.code === 'storage/object-not-found') {
