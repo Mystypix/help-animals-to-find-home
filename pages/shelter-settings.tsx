@@ -21,6 +21,7 @@ const ShelterSetting = (props: any) => {
         name: userData.name || '',
         address: userData.address || '',
         phone: userData.phone || '',
+        website: userData.website || '',
         email: userData.email || '',
         description: userData.description || '',
     })
@@ -44,7 +45,7 @@ const ShelterSetting = (props: any) => {
         let coordinates
         const {userData} = props
         e.preventDefault()
-        const {name, address, phone, email, description} = inputs
+        const {name, address, phone, email, description, website} = inputs
         if (address) {
             const geocoding = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURI(address)}.json?access_token=`).then((response) => response.json())
             coordinates = geocoding.features ? geocoding.features[0].center : []
@@ -58,6 +59,7 @@ const ShelterSetting = (props: any) => {
                 phone,
                 email,
                 description,
+                website,
                 ...(coordinates.length ? {coordinates} : {})
             }, {merge: true})
           
@@ -73,15 +75,26 @@ const ShelterSetting = (props: any) => {
             <div>Shelter Settings</div>
 
             <form onSubmit={handleSubmit}>
-                <label htmlFor="name">Shelter name</label>
-                <Input name='name' onChange={handleInputChange} value={inputs.name} placeholder="Name" />
-                <label htmlFor="name">Shelter description</label>
-                <Input name='description' onChange={handleInputChange} value={inputs.description} placeholder="Description" />
-                <label htmlFor="name">Shelter description</label>
-                <Input name='address' onChange={handleInputChange} value={inputs.address} placeholder="Address" />
-                <Input name='phone' onChange={handleInputChange} value={inputs.phone} placeholder="Phone" />
-                <Input name='email' onChange={handleInputChange} value={inputs.email} placeholder="Email" />
-                <Button type="submit" disabled={!dirty}>Save</Button>
+                <div>
+                    <div>Image</div>
+                </div>
+                <div>
+                    <div>General</div>
+                    <label htmlFor="name">Shelter name</label>
+                    <Input name='name' onChange={handleInputChange} value={inputs.name} placeholder="Name" />
+                    <label htmlFor="name">Shelter description</label>
+                    <Input name='description' onChange={handleInputChange} value={inputs.description} placeholder="Description" />
+                    <label htmlFor="name">Shelter description</label>
+                    <Input name='address' onChange={handleInputChange} value={inputs.address} placeholder="Address" />
+                    <div>Contact</div>
+                    <label htmlFor="name">Email</label>
+                    <Input name='email' onChange={handleInputChange} value={inputs.email} />
+                    <label htmlFor="name">Phone</label>
+                    <Input name='phone' onChange={handleInputChange} value={inputs.phone} />
+                    <label htmlFor="name">Website</label>
+                    <Input name='website' onChange={handleInputChange} value={inputs.website} />
+                    <Button type="submit" disabled={!dirty}>Save changes</Button>
+                </div>
             </form>
             <Snackbar open={snackBarOpen} autoHideDuration={6000} onClose={handleCloseSnackBar}>
                 <Alert onClose={handleCloseSnackBar} severity="success" sx={{ width: '100%' }}>
