@@ -6,7 +6,7 @@ import Text from '../common/Text'
 interface IPetCard {
   image: string
   name: string
-  age: string
+  age?: string
   species: string
   url: string
   alt: string
@@ -37,7 +37,7 @@ const PetCard = ({ image, name, age, species, url, alt }: IPetCard) => {
     )
   }
   return (
-    <Card image={image} url={url} alt={alt}>
+    <Card image={image} url={url} alt={alt} >
       <PetDetails />
     </Card>
   )

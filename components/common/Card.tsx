@@ -16,7 +16,7 @@ const Card = ({ image, alt, url, children }: ICard) => {
   return (
     <Container onClick={() => url && router.push(url)}>
       <CardActionArea>
-        {image && <CardMedia component="img" image={image} alt={alt} />}
+        {image && <CardMedia component="img" image={image} alt={alt} width={300} height={250} style={{objectFit: 'contain'}}/>}
         {children}
       </CardActionArea>
     </Container>

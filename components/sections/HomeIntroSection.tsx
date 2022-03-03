@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Image from 'next/image'
+import Image from '../image'
 import Text from '../common/Text'
 import Button from '../common/Button'
 import Section from '../common/Section'

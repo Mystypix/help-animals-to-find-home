@@ -101,7 +101,6 @@ const ShelterSetting = (props: any) => {
                     {inputs.image && <Image src={inputs.image} width='572' height='560' alt='Animal image' />}
                     <label htmlFor="shelter-image">
                         <Input
-                            style={{ display: 'none' }}
                             id="shelter-image"
                             name="shelter-image"
                             type="file"

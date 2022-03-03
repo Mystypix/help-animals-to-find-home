@@ -27,6 +27,7 @@ const AccountBox = () => {
             {open && (
                 <StyledAccountPopUp onClick={() => setOpen(false)}>
                     <Link href={user.type === 'individual' ? '/individual-settings'  : '/shelter-settings'}>Settings</Link>
+                    <Link href='/my-pets'>My Pets</Link>
                     <Button onClick={signOut}>Logout</Button>
                 </StyledAccountPopUp>
             )}
