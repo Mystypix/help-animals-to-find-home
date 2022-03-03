@@ -2,10 +2,16 @@ import React, { useState } from 'react'
 import Card, { ICard } from '../common/CardImage'
 import Grid from '../common/Grid'
 import Section from '../common/Section'
-import mockShelters from '../../mocks/shelters.json'
+import { getFirestore, collection } from 'firebase/firestore'
+import { useCollectionData } from 'react-firebase-hooks/firestore'
 
 const ShelterListSection = () => {
-  const [shelters, setShelters] = useState(mockShelters) // TODO: remove mock and use setShelters to get the actual data
+  const [shelters, loading, error] = useCollectionData(collection(
+    getFirestore(), 'users'),
+    {
+      snapshotListenOptions: { includeMetadataChanges: true },
+    }
+  )
 
   return (
     <Section
@@ -14,12 +20,16 @@ const ShelterListSection = () => {
       footerLink={{ text: 'Show more...', url: '/shelters' }}
     >
       <Grid spacing={2}>
-        {shelters.slice(0, 6).map((shelter) => {
-          const { userName, image } = shelter
-          const url = `/${userName}`
-          const alt = userName
-          return <Card image={image} url={url} alt={alt} key={userName} />
-        })}
+        {loading && <div>loading...</div>}
+        {error && <div>shit</div>}
+        {shelters && (
+          <div>
+            {shelters.slice(0, 6).map((shelter) => {
+              const { name, id } = shelter
+              return <Card key={id} name={name} />
+            })}
+          </div>
+        )}
       </Grid>
     </Section>
   )

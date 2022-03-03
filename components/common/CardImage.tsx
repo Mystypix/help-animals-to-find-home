@@ -4,18 +4,20 @@ import { useRouter } from 'next/router'
 import styled from 'styled-components'
 
 export interface ICard {
-  image: string
-  alt: string
+  image?: string
+  alt?: string
   url?: string
+  name: string
 }
 
-const Card = ({ image, alt, url }: ICard) => {
+const Card = ({ image, alt, url, name }: ICard) => {
   const router = useRouter()
 
   return (
     <Container onClick={() => url && router.push(url)}>
       <CardActionArea>
-        <CardMedia component="img" image={image} alt={alt} />
+        {image && <CardMedia component="img" image={image} alt={alt} />}
+        <div>{name}</div>
       </CardActionArea>
     </Container>
   )

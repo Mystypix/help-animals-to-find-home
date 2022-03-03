@@ -6,29 +6,29 @@ import { db } from '../firebase/firebase'
 
 const ShelterSetting = () => {
     const [inputs, setInputs] = useState({})
+    const [dirty, setDirty] = useState(false)
 
     const handleInputChange = ({target}: any) => {
        setInputs(state => ({...state, [target.name]: target.value}))
+       setDirty(true)
     }
 
     const handleSubmit = async (e: any) => {
         e.preventDefault()
         const {name, address, phone, email} = inputs
 
-        console.log('wtf', db)
-
         try {
-            const docRef = await addDoc(collection(db, "users"), {
+            await addDoc(collection(db, "users"), {
                 name,
                 address,
                 phone,
                 email,
                 type: 'shelter',
-            });
+            })
           
-            console.log("Document written with ID: ", docRef.id);
+            setDirty(false)
         } catch (e) {
-        console.error("Error adding document: ", e);
+            console.error("Error adding document: ", e);
         }
     }
 
@@ -39,7 +39,7 @@ const ShelterSetting = () => {
                 <Input name='address' onChange={handleInputChange} value={inputs.address} placeholder="Address" />
                 <Input name='phone' onChange={handleInputChange} value={inputs.phone} placeholder="Phone" />
                 <Input name='email' onChange={handleInputChange} value={inputs.email} placeholder="Email" />
-                <Button type="submit">Save</Button>
+                <Button type="submit" disabled={!dirty}>Save</Button>
             </form>
         </div>
     )
