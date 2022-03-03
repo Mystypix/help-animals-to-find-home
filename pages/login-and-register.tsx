@@ -12,6 +12,7 @@ const LoginAndRegister: NextPage = () => {
   const router = useRouter()
 
   const getDBUser = async (user: any) => {
+    if (!user) return null
     const q = query(collection(db, 'users'), where("id", "==", user.uid))
 
     const querySnapshot = await getDocs(q);
