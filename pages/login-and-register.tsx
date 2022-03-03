@@ -66,9 +66,7 @@ const LoginAndRegister: NextPage = () => {
         const ref = doc(db, 'users', user.uid)
         setDoc(ref, {
           id: user.uid,
-          email: user.email,
           type: 'individual',
-          photo: user.photoURL
         });
       }
     })
