@@ -62,7 +62,7 @@ export default function SheltersMap({height}: Props) {
                 <PopupTitle>{selected.name}</PopupTitle>
                 <PopupAddress><MapIcon /> {selected.address}</PopupAddress>
                 <PopupButtonContainer>
-                  <Button onClick={() => router.push(`/shelter-details/${selected.id}`)}>View Shelter</Button>
+                  <Button onClick={() => router.push(`/shelter/${selected.id}`)}>View Shelter</Button>
                 </PopupButtonContainer>
               </Popup>
             )}
