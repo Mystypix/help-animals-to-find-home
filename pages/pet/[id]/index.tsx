@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Button from '@mui/material/Button'
+import Button from '../../../components/common/Button'
 import withAuth from '../../../components/common/AuthComponent'
 import PageTitle from '../../../components/page-title'
 import { useRouter } from 'next/router'
@@ -11,6 +11,7 @@ import SectionTitle from '../../../components/section-title'
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { v4 as uuidv4 } from 'uuid'
 import Image from '../../../components/common/Image'
+import styled from '@emotion/styled'
 
 const EditPet = (props: any) => {
   const [dirty, setDirty] = useState(false)
@@ -90,19 +91,21 @@ const EditPet = (props: any) => {
 
   return (
     <div>
-      <PageTitle>
-        <a
-          onClick={() => router.push('/my-pets')}
-          style={{ textDecoration: 'underline', cursor: 'pointer' }}
-        >
-          My Pets
-        </a>
-        / Add New Pet
-      </PageTitle>
-      <Button color="secondary" variant="contained" onClick={handleRemove}>
-        Remove Pet
-      </Button>
-      <form onSubmit={handleSubmit}>
+        <StyledHeader>
+            <PageTitle>
+                <a
+                onClick={() => router.push('/my-pets')}
+                style={{ textDecoration: 'underline', cursor: 'pointer' }}
+                >
+                My Pets
+                </a>
+                / Add New Pet
+            </PageTitle>
+            <Button color="secondary" variant="contained" onClick={handleRemove}>
+                Remove Pet
+            </Button>
+        </StyledHeader>
+      <StyledForm onSubmit={handleSubmit}>
         <div>
           <SectionTitle>Image</SectionTitle>
           {inputs.profileImg && (
@@ -110,14 +113,16 @@ const EditPet = (props: any) => {
               src={inputs.profileImg}
               width="500"
               height="400"
+              objectFit="cover"
               alt="Profile Image"
             />
           )}
-          <label htmlFor="profile-image">
+          <label htmlFor="profile-image" style={{display: 'block', margin: '15px auto', textAlign: 'center'}}>
             <Input
               id="profile-image"
               name="profile-image"
               type="file"
+              style={{opacity: 0, visibility: 'hidden', position: 'fixed', pointerEvents: 'none'}}
               onChange={handleUploadProfileImg}
             />
             <Button color="secondary" variant="contained">
@@ -125,7 +130,7 @@ const EditPet = (props: any) => {
             </Button>
           </label>
         </div>
-        <div>
+        <div style={{marginLeft: '128px', flex: '1 1 auto'}}>
           <SectionTitle>General Info</SectionTitle>
           <InputLabel htmlFor="name">Pet Name</InputLabel>
           <Input
@@ -164,13 +169,24 @@ const EditPet = (props: any) => {
             onChange={handleInputChange}
             value={inputs.description}
           />
-          <Button type="submit" disabled={!dirty}>
+          <Button type="submit" disabled={!dirty} style={{display: 'block', marginTop: '10px'}}>
             Save changes
           </Button>
         </div>
-      </form>
+      </StyledForm>
     </div>
   )
 }
 
 export default withAuth(EditPet)
+
+const StyledHeader = styled.div`
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+` 
+
+const StyledForm = styled.form`
+    display: flex;
+    align-items: flex-start;
+`

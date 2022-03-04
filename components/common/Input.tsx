@@ -10,6 +10,7 @@ function Input(props: MUIInputProps) {
 export default Input
 
 const StyledInput = styled(MUIInput)`
+  display: flex !important;
   border-radius: 18px;
   margin-bottom: 24px;
   input {

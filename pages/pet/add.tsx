@@ -216,7 +216,7 @@ const StyledPhotoUpload = styled.div`
 
 const StyledGeneralInfo = styled.div`
   flex-grow: 3;
-  margin-left: 48px;
+  margin-left: 128px;
   display: flex;
   flex-direction: column;
 `

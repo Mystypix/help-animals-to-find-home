@@ -121,6 +121,7 @@ const ShelterSetting = (props: any) => {
               src={inputs.image}
               width="335"
               height="250"
+              objectFit="cover"
               alt="Animal image"
             />
           )}
@@ -230,8 +231,8 @@ const StyledImageUpload = styled.div`
 `
 
 const StyledGeneralInfo = styled.div`
-  flex-grow: 3;
-  margin-left: 48px;
+  flex: 1 1 auto;
+  margin-left: 128px;
   display: flex;
   flex-direction: column;
 `
