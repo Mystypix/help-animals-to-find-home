@@ -20,14 +20,14 @@ const ShelterCard = ({ shelter }: Props) => {
         setShelterImg(imgUrl)
       } catch (err: any) {
         if (err.code === 'storage/object-not-found') {
-          setShelterImg(await getDownloadURL(ref(storage, `default-shelter`)))
+          return setShelterImg(await getDownloadURL(ref(storage, `default-shelter`)))
         }
         console.log(err)
       }
     }
     getShelterImg()
   }, [])
-  console.log({shelter, shelterImg})
+
   return (
     <Link href={`/shelter-detail/${shelter.id}`} passHref>
 			<Card>
