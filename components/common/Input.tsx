@@ -11,6 +11,7 @@ export default Input
 
 const StyledInput = styled(MUIInput)`
   border-radius: 18px;
+  margin-bottom: 24px;
   input {
     padding: 8px 16px;
   }
