@@ -82,7 +82,7 @@ const ShelterSetting = (props: any) => {
       const geocoding = await fetch(
         `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURI(
           address
-        )}.json?access_token=`
+        )}.json?access_token=${process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}`
       ).then((response) => response.json())
       coordinates = geocoding.features ? geocoding.features[0].center : []
     }
@@ -98,7 +98,7 @@ const ShelterSetting = (props: any) => {
           email,
           description,
           website,
-          ...(coordinates.length ? { coordinates } : {}),
+          ...(coordinates?.length ? { coordinates } : {}),
         },
         { merge: true }
       )
