@@ -1,5 +1,4 @@
 import Button from '@mui/material/Button'
-import withAuth from '../components/common/AuthComponent'
 import PageTitle from "../components/page-title"
 import Grid from '../components/common/Grid'
 import Card from '../components/cards/PetCard'
@@ -79,7 +78,7 @@ const Pets = (props: any) => {
     )
 }
 
-export default withAuth(Pets)
+export default Pets
 
 const StyledFilterWrapper = styled.div`
     display: flex;

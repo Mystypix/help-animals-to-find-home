@@ -1,5 +1,4 @@
-import React, {useState, useEffect} from 'react'
-import withAuth from '../../../../components/common/AuthComponent'
+import React, {useState} from 'react'
 import PageTitle from '../../../../components/page-title'
 import { useRouter } from 'next/router'
 import SectionTitle from '../../../../components/section-title'
@@ -32,12 +31,6 @@ const Detail = (props: any) => {
       }
     }
   }
-
-  useEffect(() => {
-    if (!loading) {
-      getShelterImg()
-    }
-  }, [loading])
 
   if (loading) {
     return <LoadingPage />
@@ -153,7 +146,7 @@ const Detail = (props: any) => {
   )
 }
 
-export default withAuth(Detail)
+export default Detail
 
 const StyledWrapper = styled.div`
   display: flex;
