@@ -11,6 +11,7 @@ interface IButton {
   disabled?: boolean
   onClick?: any
   style?: any
+  variant?: string
 }
 
 function Button({
@@ -22,6 +23,7 @@ function Button({
   disabled,
   onClick,
   style,
+  variant,
 }: IButton) {
   const buttonProps = {
     variant: 'contained',

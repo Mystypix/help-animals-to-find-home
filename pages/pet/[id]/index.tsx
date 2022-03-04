@@ -11,6 +11,8 @@ import SectionTitle from '../../../components/section-title'
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import Image from '../../../components/common/Image'
 import styled from '@emotion/styled'
+import MenuItem from '@mui/material/MenuItem';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 const EditPet = (props: any) => {
   const [dirty, setDirty] = useState(false)
@@ -141,19 +143,31 @@ const EditPet = (props: any) => {
             placeholder="Name"
           />
           <InputLabel htmlFor="type">Animal Type</InputLabel>
-          <Input
-            name="type"
-            onChange={handleInputChange}
+          <Select
+            labelId="type"
+            id="type"
             value={inputs.type}
-            placeholder="type"
-          />
-          <InputLabel htmlFor="gender">Gender</InputLabel>
-          <Input
-            name="gender"
+            label="Type"
             onChange={handleInputChange}
+            name="type"
+          >
+              <MenuItem value={'dog'}>Dog</MenuItem>
+              <MenuItem value={'cat'}>Cat</MenuItem>
+              <MenuItem value={'rabbit'}>Rabbit</MenuItem>
+              <MenuItem value={'other'}>Other</MenuItem>
+          </Select>
+          <InputLabel htmlFor="gender">Sex</InputLabel>
+          <Select
+            labelId="gender"
+            id="gender"
             value={inputs.gender}
-            placeholder="Gender"
-          />
+            label="gender"
+            onChange={handleInputChange}
+            name="gender"
+          >
+            <MenuItem value={'male'}>Male</MenuItem>
+            <MenuItem value={'female'}>Female</MenuItem>
+          </Select>
           <InputLabel htmlFor="age">Age</InputLabel>
           <Input name="age" onChange={handleInputChange} value={inputs.age} />
           <InputLabel htmlFor="size">Size</InputLabel>

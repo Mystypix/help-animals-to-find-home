@@ -13,6 +13,9 @@ import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import Image from '../../components/common/Image'
 import styled from '@emotion/styled'
+import MenuItem from '@mui/material/MenuItem';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+
 
 const AddPet = (props: any) => {
   const id = uuidv4()
@@ -140,22 +143,34 @@ const AddPet = (props: any) => {
           />
           <StyledRow>
             <div>
-              <InputLabel htmlFor="type">Animal Species</InputLabel>
-              <Input
-                name="type"
-                onChange={handleInputChange}
+            <InputLabel htmlFor="type">Animal Species</InputLabel>
+              <Select
+                labelId="type"
+                id="type"
                 value={inputs.type}
-                placeholder="Dog, cat, rabbit..."
-              />
+                label="Type"
+                onChange={handleInputChange}
+                name="type"
+              >
+                <MenuItem value={'dog'}>Dog</MenuItem>
+                <MenuItem value={'cat'}>Cat</MenuItem>
+                <MenuItem value={'rabbit'}>Rabbit</MenuItem>
+                <MenuItem value={'other'}>Other</MenuItem>
+              </Select>
             </div>
             <div>
-              <InputLabel htmlFor="gender">Gender</InputLabel>
-              <Input
-                name="gender"
-                onChange={handleInputChange}
+            <InputLabel htmlFor="gender">Sex</InputLabel>
+              <Select
+                labelId="gender"
+                id="gender"
                 value={inputs.gender}
-                placeholder="Gender"
-              />
+                label="gender"
+                onChange={handleInputChange}
+                name="gender"
+              >
+                <MenuItem value={'male'}>Male</MenuItem>
+                <MenuItem value={'female'}>Female</MenuItem>
+              </Select>
             </div>
           </StyledRow>
           <StyledRow>
