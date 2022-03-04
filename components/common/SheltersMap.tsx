@@ -50,7 +50,7 @@ export default function SheltersMap({height}: Props) {
                   <Image
                     src={shelter.id === selected?.id ? '/images/map-marker-dark.svg' : '/images/map-marker-pink.svg'}
                     width={40}
-                    height={40}
+                    height={50}
                     alt={shelter.name}
                     objectFit='cover'
                   />
