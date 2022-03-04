@@ -107,7 +107,7 @@ const EditPet = (props: any) => {
             </Button>
         </StyledHeader>
       <StyledForm onSubmit={handleSubmit}>
-        <div>
+        <div style={{flex: '0 0 336px'}}>
           <SectionTitle>Image</SectionTitle>
           {inputs.profileImg && (
             <StyledImageWrapper>
@@ -168,16 +168,20 @@ const EditPet = (props: any) => {
                 label="gender"
                 onChange={handleInputChange}
                 name="gender"
-                style={{width: '200px', borderRadius: '30px', height: '39px',}}
+                style={{width: '200px', borderRadius: '30px', height: '39px'}}
             >
                 <MenuItem value={'male'}>Male</MenuItem>
                 <MenuItem value={'female'}>Female</MenuItem>
             </Select>
           </div>
-          <InputLabel htmlFor="age">Age</InputLabel>
-          <Input name="age" onChange={handleInputChange} value={inputs.age} />
-          <InputLabel htmlFor="size">Size</InputLabel>
-          <Input name="size" onChange={handleInputChange} value={inputs.size} />
+          <div style={{display: 'inline-block', marginRight: '36px'}}>
+            <InputLabel htmlFor="age">Age</InputLabel>
+            <Input name="age" onChange={handleInputChange} value={inputs.age} />
+          </div>
+          <div style={{display: 'inline-block', marginBottom: '24px'}}>
+            <InputLabel htmlFor="size">Size</InputLabel>
+            <Input name="size" onChange={handleInputChange} value={inputs.size} />
+          </div>
           <InputLabel htmlFor="breed">Breed</InputLabel>
           <Input
             name="breed"

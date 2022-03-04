@@ -138,28 +138,27 @@ const AddPet = (props: any) => {
             name="name"
             onChange={handleInputChange}
             value={inputs.name}
-            placeholder="Name"
             fullWidth
           />
           <StyledRow>
-            <div>
-            <InputLabel htmlFor="type">Animal Species</InputLabel>
-              <Select
-                labelId="type"
-                id="type"
-                value={inputs.type}
-                label="Type"
-                onChange={handleInputChange}
-                name="type"
-                style={{width: '208px', marginRight: '32px'}}
-              >
-                <MenuItem value={'dog'}>Dog</MenuItem>
-                <MenuItem value={'cat'}>Cat</MenuItem>
-                <MenuItem value={'rabbit'}>Rabbit</MenuItem>
-                <MenuItem value={'other'}>Other</MenuItem>
-              </Select>
-            </div>
-            <div>
+            <div style={{display: 'inline-block'}}>
+              <InputLabel htmlFor="type">Animal Species</InputLabel>
+                <Select
+                  labelId="type"
+                  id="type"
+                  value={inputs.type}
+                  label="Type"
+                  onChange={handleInputChange}
+                  name="type"
+                  style={{width: '200px', borderRadius: '30px', height: '39px', marginRight: '36px'}}
+                >
+                  <MenuItem value={'dog'}>Dog</MenuItem>
+                  <MenuItem value={'cat'}>Cat</MenuItem>
+                  <MenuItem value={'rabbit'}>Rabbit</MenuItem>
+                  <MenuItem value={'other'}>Other</MenuItem>
+                </Select>
+              </div>
+            <div style={{display: 'inline-block', marginBottom: '24px'}}>
             <InputLabel htmlFor="gender">Sex</InputLabel>
               <Select
                 labelId="gender"
@@ -168,7 +167,7 @@ const AddPet = (props: any) => {
                 label="gender"
                 onChange={handleInputChange}
                 name="gender"
-                style={{width: '208px'}}
+                style={{width: '200px', borderRadius: '30px', height: '39px'}}
               >
                 <MenuItem value={'male'}>Male</MenuItem>
                 <MenuItem value={'female'}>Female</MenuItem>
