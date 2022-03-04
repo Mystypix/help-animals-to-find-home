@@ -30,7 +30,7 @@ const RegisterBox = () => {
         }
         router.push('/shelter/settings')
       })
-      .catch((error) => {
+      .catch((error: any) => {
         console.error(error)
       })
   }
@@ -49,7 +49,7 @@ const RegisterBox = () => {
         }
         router.push('/individual/settings')
       })
-      .catch((error) => {
+      .catch((error: any) => {
         console.error(error)
       })
   }

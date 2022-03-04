@@ -22,7 +22,7 @@ const Detail = (props: any) => {
     const getShelterImg = async () => {
       const {userData} = props
       const storage = getStorage()
-      const imgRef = ref(storage, `${userData.id}-shelter`)
+      const imgRef = ref(storage, `${userData.uid}-shelter`)
       try {
         const imgUrl = await getDownloadURL(imgRef)
         setShelterImg(imgUrl)

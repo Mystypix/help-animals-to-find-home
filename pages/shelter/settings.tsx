@@ -59,7 +59,7 @@ const ShelterSetting = (props: any) => {
 
   const handleImageUpload = async (e: any) => {
     if (e.currentTarget.files && e.currentTarget.files[0]) {
-      const storageRef = ref(storage, `${userData.id}-shelter`)
+      const storageRef = ref(storage, `${userData.uid}-shelter`)
 
       let img = e.currentTarget.files[0]
 
@@ -67,7 +67,7 @@ const ShelterSetting = (props: any) => {
         setSnackBarOpen(true)
         setInputs({
           ...inputs,
-          image: await getDownloadURL(ref(storage, `${userData.id}-shelter`)),
+          image: await getDownloadURL(ref(storage, `${userData.uid}-shelter`)),
         })
       })
     }

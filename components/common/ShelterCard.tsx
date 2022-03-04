@@ -14,7 +14,7 @@ const ShelterCard = ({ shelter }: Props) => {
   useEffect(() => {
     const getShelterImg = async () => {
       const storage = getStorage()
-      const imgRef = ref(storage, `${shelter.id}-shelter`)
+      const imgRef = ref(storage, `${shelter.uid}-shelter`)
       try {
         const imgUrl = await getDownloadURL(imgRef)
         setShelterImg(imgUrl)

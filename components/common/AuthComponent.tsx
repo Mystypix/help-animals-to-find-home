@@ -14,7 +14,7 @@ const withAuth = (Component: any) => {
     useEffect(() => {
       const getShelterImg = async (userData: any) => {
         const storage = getStorage()
-        const imgRef = ref(storage, `${userData.id}-shelter`)
+        const imgRef = ref(storage, `${userData.uid}-shelter`)
         try {
           const imgUrl = await getDownloadURL(imgRef)
           return imgUrl
@@ -27,12 +27,15 @@ const withAuth = (Component: any) => {
       }
 
       const getUser = async () => {
-        const userData = await getDBUser(authUser)
-        if (!userData) {
+        const dbUserData = await getDBUser(authUser)
+        if (!dbUserData) {
           router.push('/')
         } else {
-          setData({
+          const userData = {
             ...authUser,
+            ...dbUserData
+          }
+          setData({
             ...userData,
             shelterImg: await getShelterImg(userData),
           })
