@@ -10,6 +10,7 @@ interface IButton {
   type?: string
   disabled?: boolean
   onClick?: any
+  style?: any
 }
 
 function Button({
@@ -19,6 +20,7 @@ function Button({
   children,
   type,
   disabled,
+  style,
 }: IButton) {
   const buttonProps = {
     variant: 'contained',
@@ -28,6 +30,7 @@ function Button({
     href: url,
     type,
     disabled,
+    style,
   }
   return <Container {...buttonProps}>{children}</Container>
 }
@@ -38,6 +41,8 @@ const Container = styled<any>(MUIButton)`
   border-radius: 50px;
   height: 48px;
   font-family: var(--font-primary);
+  color: ${({ color }) =>
+    color === 'primary' ? 'white' : 'var(--color-text)'};
   background-color: ${({ color }) =>
     color === 'primary' ? 'var(--color-primary)' : 'var(--color-secondary)'};
   padding-left: 32px;
