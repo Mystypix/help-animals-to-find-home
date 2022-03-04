@@ -24,5 +24,5 @@ export const getDBUser = async (user: any) => {
   if (!user) return null
   const docRef = doc(db, 'users', user.uid);
   const docSnap = await getDoc(docRef)
-  return docSnap.exists() ? docSnap.data() : {}
+  return docSnap.exists() ? docSnap.data() : undefined
 }
