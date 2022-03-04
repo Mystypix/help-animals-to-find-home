@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { Link as MUILink } from '@mui/material'
 
-const Link = ({ url, children }: { url: string; children: string }) => (
-  <MUILink href={url}>{children}</MUILink>
+const Link = ({ href, children }: { href: string; children: string }) => (
+  <MUILink href={href}>{children}</MUILink>
 )
 
 export default Link

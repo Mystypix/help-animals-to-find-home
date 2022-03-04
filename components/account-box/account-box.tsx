@@ -1,38 +1,67 @@
-import Link from "next/link"
-import Button from "../common/Button"
 import { useAuth } from '../../context/auth-user-context'
-import { useState } from "react"
-import { StyledWrapper, StyledAvatar, StyledAccountPopUp } from "./account-box.styles"
+import { useEffect, useState } from 'react'
+import {
+  StyledWrapper,
+  StyledAvatar,
+  StyledAccountPopUp,
+} from './account-box.styles'
 import { db } from '../../firebase/firebase'
-import { collection, query, where, getDocs } from "firebase/firestore"
+import { collection, query, where, getDocs } from 'firebase/firestore'
 import React from 'react'
+import Menu from '../common/Menu'
+import { ClickAwayListener } from '@mui/base'
+import MenuItem from '../common/MenuItem'
+import { useRouter } from 'next/router'
 
 const AccountBox = () => {
-    const { authUser, signOut }: any = useAuth()
-    const [open, setOpen] = useState(false)
+  const { authUser, signOut }: any = useAuth()
+  const [user, setUser] = useState() as any
+  const [open, setOpen] = useState<boolean>()
+  const router = useRouter()
 
-    const getDBUser = async (user: any) => {
-        if (!user) return null
-        const q = query(collection(db, 'users'), where("id", "==", user.uid))
+  useEffect(() => {
+    setUser(getDBUser(authUser) as any)
+  }, [authUser.uid])
 
-        const querySnapshot = await getDocs(q);
-        return querySnapshot.empty ? {} : querySnapshot.docs[0].data()
-    }
-    
-    const user = getDBUser(authUser) as any
+  const getDBUser = async (user: any) => {
+    if (!user) return null
+    const q = query(collection(db, 'users'), where('id', '==', user.uid))
 
-    return (
-        <StyledWrapper>
-            <StyledAvatar onClick={() => setOpen(!open)} src={authUser.userPhoto} width='35px' height='35px' />
-            {open && (
-                <StyledAccountPopUp onClick={() => setOpen(false)}>
-                    <Link href={user.type === 'individual' ? '/individual-settings'  : '/shelter-settings'}>Settings</Link>
-                    <Link href='/my-pets'>My Pets</Link>
-                    <Button onClick={signOut}>Logout</Button>
-                </StyledAccountPopUp>
-            )}
-        </StyledWrapper>
-    )
+    const querySnapshot = await getDocs(q)
+    const dbUser = querySnapshot.empty ? {} : querySnapshot.docs[0].data()
+    return dbUser
+  }
+
+  const isShelter = () => user.type !== 'individual'
+
+  const getSettingsURL = () =>
+    isShelter() ? '/shelter/settings' : '/individual/settings'
+
+  return (
+    <StyledWrapper>
+      <StyledAvatar
+        onClick={() => setOpen(!open)}
+        src={authUser.userPhoto}
+        width="35px"
+        height="35px"
+      />
+      {open && (
+        <ClickAwayListener onClickAway={() => setOpen(false)}>
+          <StyledAccountPopUp onClick={() => setOpen(false)}>
+            <Menu>
+              <MenuItem onClick={() => router.push(getSettingsURL())}>
+                {isShelter() ? 'My Shelter' : 'My Profile'}
+              </MenuItem>
+              <MenuItem onClick={() => router.push('/my-pets')}>
+                My Pets
+              </MenuItem>
+              <MenuItem onClick={signOut}>Log out</MenuItem>
+            </Menu>
+          </StyledAccountPopUp>
+        </ClickAwayListener>
+      )}
+    </StyledWrapper>
+  )
 }
 
 export default AccountBox
