@@ -60,6 +60,7 @@ const AddPet = (props: any) => {
       let img = e.currentTarget.files[0]
 
       uploadBytes(storageRef, img).then(async (snapshot) => {
+        setDirty(true)
         setInputs({
           ...inputs,
           profileImg: await getDownloadURL(ref(storage, `${id}-profileImg`)),

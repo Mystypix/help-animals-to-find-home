@@ -31,13 +31,19 @@ const EditPet = (props: any) => {
     setDirty(true)
   }
 
-  const handleUploadProfileImg = async ({ target }: any) => {
-    if (target.files && target.files[0]) {
+  const uploadPhotoFile = () => {
+    const upload = document.getElementById('profile-image')
+    upload?.click()
+  }
+
+  const handleUploadProfileImg = async (e: any) => {
+    if (e.currentTarget.files && e.currentTarget.files[0]) {
       const storageRef = ref(storage, `${id}-profileImg`)
 
-      let img = target.files[0]
+      let img = e.currentTarget.files[0]
 
       uploadBytes(storageRef, img).then(async (snapshot) => {
+        setDirty(true)
         setInputs({
           ...inputs,
           profileImg: await getDownloadURL(ref(storage, `${id}-profileImg`)),
@@ -128,7 +134,7 @@ const EditPet = (props: any) => {
               style={{opacity: 0, visibility: 'hidden', position: 'fixed', pointerEvents: 'none'}}
               onChange={handleUploadProfileImg}
             />
-            <Button color="secondary">
+            <Button color="secondary" onClick={uploadPhotoFile}>
               Upload button
             </Button>
           </label>
