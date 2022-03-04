@@ -18,34 +18,46 @@ const Section = ({
   children,
 }: ISection) => {
   return (
-    <Container style={{ backgroundColor, width: '100vw' }}>
-      <MUIContainer sx={{ mx: 2, py: 4 }}>
-        <SectionHeader>
-          {title && (
-            <Text variant="h4" component="h2" style={{ paddingBottom: 16 }}>
-              {title}
-            </Text>
-          )}
-          {footerLink && (
-            <Button url={footerLink.url}>{footerLink.text}</Button>
-          )}
-        </SectionHeader>
+    <StyledSection style={{ backgroundColor, width: '100vw' }}>
+      <StyledContainer sx={{ mx: 2, py: 4 }}>
+        {title && (
+          <Text variant="h4" component="h2" style={{ paddingBottom: 64 }}>
+            {title}
+          </Text>
+        )}
         {children}
-      </MUIContainer>
-    </Container>
+        {footerLink && (
+          <StyledButtonContainer>
+            <Button
+              url={footerLink.url}
+              color="secondary"
+              style={{ filter: 'grayscale(80%) brightness(1.15)' }}
+            >
+              {footerLink.text}
+            </Button>
+          </StyledButtonContainer>
+        )}
+      </StyledContainer>
+    </StyledSection>
   )
 }
 
 export default Section
 
-const Container = styled.section`
+const StyledSection = styled.section`
   display: flex;
   justify-content: center;
-  flex-direction: center;
+  align-items: center;
+  flex-direction: column;
 `
 
-const SectionHeader = styled.div`
+const StyledContainer = styled(MUIContainer)`
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+`
+const StyledButtonContainer = styled.div`
+  display: flex;
+  padding: 32px 0;
 `

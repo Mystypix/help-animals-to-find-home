@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Card as MUICard, CardActionArea, CardMedia } from '@mui/material'
 import { useRouter } from 'next/router'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 
 export interface ICard {
   image?: string
@@ -16,7 +16,16 @@ const Card = ({ image, alt, url, children }: ICard) => {
   return (
     <Container onClick={() => url && router.push(url)}>
       <CardActionArea>
-        {image && <CardMedia component="img" image={image} alt={alt} width={300} height={250} style={{objectFit: 'cover'}}/>}
+        {image && (
+          <StyledCardMedia
+            component="img"
+            image={image}
+            alt={alt}
+            width={300}
+            height={250}
+            style={{ objectFit: 'cover' }}
+          />
+        )}
         {children}
       </CardActionArea>
     </Container>
@@ -26,10 +35,18 @@ const Card = ({ image, alt, url, children }: ICard) => {
 export default Card
 
 const Container = styled(MUICard)`
+  width: 265px;
+  border-radius: 18px;
   transition: all 0.2s ease;
   :hover {
     filter: brightness(1.1);
     transform: scale(0.95);
   }
   box-shadow: 0px 4px 14px 0px #0000000f;
+`
+
+const StyledCardMedia = styled<any>(CardMedia)`
+  border-radius: 18px;
+  width: 265px;
+  height: 200px;
 `

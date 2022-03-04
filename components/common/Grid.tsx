@@ -15,7 +15,7 @@ const Grid = ({
     {children &&
       React.Children.count(children) > 0 &&
       React.Children.map(children, (child: React.ReactNode, index: Number) => (
-        <MUIGrid item xs={2} md={4} key={`${index}`}>
+        <MUIGrid item xs={1} md={3} key={`${index}`}>
           {child}
         </MUIGrid>
       ))}

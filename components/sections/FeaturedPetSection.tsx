@@ -10,11 +10,11 @@ const NewestPetSection = () => {
 
   return (
     <Section
-      title="Featured pets to adopt"
-      footerLink={{ text: 'Show more...', url: '/pets?sort=newest' }}
+      title="Pets to Adopt"
+      footerLink={{ text: 'View All Pets', url: '/pets?sort=newest' }}
     >
       <Grid spacing={2}>
-        {pets.slice(0, 6).map((pet) => {
+        {pets.slice(0, 4).map((pet) => {
           const { id, pictures, name, birthday, species } = pet
           const petCardProps = {
             name,
