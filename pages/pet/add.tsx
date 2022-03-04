@@ -102,12 +102,14 @@ const AddPet = (props: any) => {
         <StyledPhotoUpload>
           <SectionTitle>Main Photo</SectionTitle>
           {inputs.profileImg && (
-            <Image
-              src={inputs.profileImg}
-              width="335"
-              height="250"
-              alt="Profile Image"
-            />
+            <StyledImageWrapper>
+              <Image
+                src={inputs.profileImg}
+                width="335"
+                height="250"
+                alt="Profile Image"
+              />
+            </StyledImageWrapper>
           )}
           <input
             id="profile-image"
@@ -234,4 +236,10 @@ const StyledRow = styled.div`
       margin-right: 24px;
     }
   }
+`
+
+const StyledImageWrapper = styled.div`
+  border-radius: 32px;
+  overflow: hidden;
+  height: 250px;
 `

@@ -8,6 +8,7 @@ import { useCollectionData } from 'react-firebase-hooks/firestore'
 import { getFirestore, collection } from 'firebase/firestore'
 import LoadingPage from '../../../../components/common/LoadingPage'
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage'
+import styled from '@emotion/styled'
 
 const Detail = (props: any) => {
   const router = useRouter()
@@ -67,65 +68,93 @@ const Detail = (props: any) => {
         </a>
         / {petInfo.name}
       </PageTitle>
-        <div>
+      <StyledWrapper>
+        <StyledImageWrapper>
           <Image
             src={petInfo.profileImg}
-            width="500"
-            height="400"
+            width="336"
+            height="252"
             alt="Profile Image"
           />
-        </div>
-        <div>
-          <SectionTitle>General</SectionTitle>
+        </StyledImageWrapper>
+        <StyledInfo>
           <div>
-            <strong>Name</strong> {petInfo.name}
+            <SectionTitle>General</SectionTitle>
+            <StyledItem>
+              <strong>Name:</strong> {petInfo.name}
+            </StyledItem>
+            <StyledItem>
+              <strong>Gender:</strong> {petInfo.gender}
+            </StyledItem>
+            <StyledItem>
+              <strong>Age:</strong> {petInfo.age}
+            </StyledItem>
+            <StyledItem>
+              <strong>Breed:</strong> {petInfo.breed}
+            </StyledItem>
+            <StyledItem>
+              <strong>Size:</strong> {petInfo.size}
+            </StyledItem>
+            <StyledDescription>
+              {petInfo.description}
+            </StyledDescription>
           </div>
-          <div>
-            <strong>Gender</strong> {petInfo.gender}
-          </div>
-          <div>
-            <strong>Age</strong> {petInfo.age}
-          </div>
-          <div>
-            <strong>Breed</strong> {petInfo.breed}
-          </div>
-          <div>
-            <strong>Size</strong> {petInfo.size}
-          </div>
-          <div>
-            <strong>Description</strong> {petInfo.description}
-          </div>
-        </div>
 
-        <div>
-          <SectionTitle>Contact on Shelter</SectionTitle>
-          <Image
-            src={shelterImg}
-            width="500"
-            height="400"
-            alt="Profile Image"
-          />
           <div>
-            <strong>Shelter</strong> {petInfo.userInfo.name}
+            <SectionTitle>Contact on Shelter</SectionTitle>
+            {/* <Image
+              src={shelterImg}
+              width="500"
+              height="400"
+              alt="Profile Image"
+            /> */}
+            <StyledItem>
+              <strong>Shelter</strong> {petInfo.userInfo.name}
+            </StyledItem>
+            <StyledItem>
+              <strong>Email</strong> {petInfo.userInfo.email}
+            </StyledItem>
+            <StyledItem>
+              <strong>Phone</strong> {petInfo.userInfo.phone}
+            </StyledItem>
+            <StyledItem>
+              <strong>Website</strong> {petInfo.userInfo.website}
+            </StyledItem>
+            <StyledItem>
+              <strong>Address</strong> {petInfo.userInfo.address}
+            </StyledItem>
+            <StyledDescription>
+              {petInfo.userInfo.description}
+            </StyledDescription>
           </div>
-          <div>
-            <strong>Email</strong> {petInfo.userInfo.email}
-          </div>
-          <div>
-            <strong>Phone</strong> {petInfo.userInfo.phone}
-          </div>
-          <div>
-            <strong>Website</strong> {petInfo.userInfo.website}
-          </div>
-          <div>
-            <strong>Address</strong> {petInfo.userInfo.address}
-          </div>
-          <div>
-            {petInfo.userInfo.description}
-          </div>
-        </div>
+        </StyledInfo>
+      </StyledWrapper>
     </div>
   )
 }
 
 export default withAuth(Detail)
+
+const StyledWrapper = styled.div`
+  display: flex;
+  align-items: flex-start;
+`
+
+const StyledInfo = styled.div`
+  margin-left: 128px;
+`
+
+const StyledItem = styled.div`
+  margin-bottom: 6px;
+`
+
+const StyledDescription = styled.div`
+  margin-top: 32px;
+  margin-bottom: 48px;
+`
+
+const StyledImageWrapper = styled.div`
+  border-radius: 32px;
+  overflow: hidden;
+  height: 252px;
+`

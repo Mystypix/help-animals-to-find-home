@@ -9,7 +9,6 @@ import { db } from '../../../firebase/firebase'
 import { InputLabel } from '../../../components/common/input-label'
 import SectionTitle from '../../../components/section-title'
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
-import { v4 as uuidv4 } from 'uuid'
 import Image from '../../../components/common/Image'
 import styled from '@emotion/styled'
 
@@ -101,7 +100,7 @@ const EditPet = (props: any) => {
                 </a>
                 / Add New Pet
             </PageTitle>
-            <Button color="secondary" variant="contained" onClick={handleRemove}>
+            <Button color="secondary" onClick={handleRemove}>
                 Remove Pet
             </Button>
         </StyledHeader>
@@ -109,13 +108,15 @@ const EditPet = (props: any) => {
         <div>
           <SectionTitle>Image</SectionTitle>
           {inputs.profileImg && (
-            <Image
-              src={inputs.profileImg}
-              width="500"
-              height="400"
-              objectFit="cover"
-              alt="Profile Image"
-            />
+            <StyledImageWrapper>
+                <Image
+                src={inputs.profileImg}
+                width="336"
+                height="252"
+                objectFit="cover"
+                alt="Profile Image"
+                />
+            </StyledImageWrapper>
           )}
           <label htmlFor="profile-image" style={{display: 'block', margin: '15px auto', textAlign: 'center'}}>
             <Input
@@ -125,7 +126,7 @@ const EditPet = (props: any) => {
               style={{opacity: 0, visibility: 'hidden', position: 'fixed', pointerEvents: 'none'}}
               onChange={handleUploadProfileImg}
             />
-            <Button color="secondary" variant="contained">
+            <Button color="secondary">
               Upload button
             </Button>
           </label>
@@ -189,4 +190,11 @@ const StyledHeader = styled.div`
 const StyledForm = styled.form`
     display: flex;
     align-items: flex-start;
+    max-width: 900px;
+`
+
+const StyledImageWrapper = styled.div`
+  border-radius: 32px;
+  overflow: hidden;
+  height: 252;
 `
