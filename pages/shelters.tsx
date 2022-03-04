@@ -12,7 +12,8 @@ const shelter = {
   id: '1', 
   profileImg: '/images/placeholder.svg',
   name: 'Animal Shelter Name', 
-  description: 'The Alberta SPCA operates independently of all other animal welfare organizations. The links on this page are provided as a service to the pu...'
+  description: 'The Alberta SPCA operates independently of all other animal welfare organizations. The links on this page are provided as a service to the pu...',
+  address: 'Ukrajinská 334/21 , Prague 4'
 }
 
 const Shelters: NextPage = () => {

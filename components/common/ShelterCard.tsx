@@ -14,7 +14,7 @@ const ShelterCard = ({ shelter }: Props) => {
         <Content>
           <Title>{shelter.name}</Title>
           <Description>{shelter.description}</Description>
-          <Address><MapIcon /> Ukrajinská 334/21 , Prague 4</Address>
+          <Address><MapIcon /> {shelter.address}</Address>
         </Content>
       </Card>
     </Link>
@@ -39,6 +39,7 @@ const Card = styled.a`
 const CardImage = styled(Image)`
   border-radius: 16px;
   width: 100%;
+  object-fit: cover;
 `
 
 const Content = styled.div`
