@@ -8,6 +8,7 @@ import React, {useState, useEffect} from 'react'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 import { getFirestore, collection } from 'firebase/firestore'
 import Stack from '@mui/material/Stack'
+import styled from '@emotion/styled'
 
 const Pets = (props: any) => {
     const {userData} = props
@@ -40,18 +41,24 @@ const Pets = (props: any) => {
     return (
         <div>
             <PageTitle>Pets</PageTitle>
-            Animal Type
-            <Stack spacing={2} direction="row">
-                <Button variant={filters.types.includes('dog') ? "contained" : "outlined"} onClick={() => setFiltersType('dog')}>Dog</Button>
-                <Button variant={filters.types.includes('cat') ? "contained" : "outlined"} onClick={() => setFiltersType('cat')}>Cat</Button>
-                <Button variant={filters.types.includes('rabbit') ? "contained" : "outlined"} onClick={() => setFiltersType('rabbit')}>Rabbit</Button>
-                <Button variant={filters.types.includes('other') ? "contained" : "outlined"} onClick={() => setFiltersType('other')}>Other</Button>
-            </Stack>
-            Gender
-            <Stack spacing={2} direction="row">
-                <Button variant={filters.genders.includes('male') ? "contained" : "outlined"} onClick={() => setGenders('male')}>Male</Button>
-                <Button variant={filters.genders.includes('female') ? "contained" : "outlined"} onClick={() => setGenders('female')}>Female</Button>
-            </Stack>
+            <StyledFilterWrapper>
+                <StyledFilterType>
+                    <StyledFilterTitle>Animal</StyledFilterTitle>
+                    <Stack spacing={2} direction="row">
+                        <Button style={{borderRadius: '30px', color: filters.types.includes('dog') ? "white" : "var(--color-text)"}} variant={filters.types.includes('dog') ? "contained" : "outlined"} onClick={() => setFiltersType('dog')}>Dog</Button>
+                        <Button style={{borderRadius: '30px', color: filters.types.includes('cat') ? "white" : "var(--color-text)"}} variant={filters.types.includes('cat') ? "contained" : "outlined"} onClick={() => setFiltersType('cat')}>Cat</Button>
+                        <Button style={{borderRadius: '30px', color: filters.types.includes('rabbit') ? "white" : "var(--color-text)"}} variant={filters.types.includes('rabbit') ? "contained" : "outlined"} onClick={() => setFiltersType('rabbit')}>Rabbit</Button>
+                        <Button style={{borderRadius: '30px', color: filters.types.includes('other') ? "white" : "var(--color-text)"}} variant={filters.types.includes('other') ? "contained" : "outlined"} onClick={() => setFiltersType('other')}>Other</Button>
+                    </Stack>
+                </StyledFilterType>
+                <StyledFilterType>
+                    <StyledFilterTitle>Gender</StyledFilterTitle>
+                    <Stack spacing={2} direction="row">
+                        <Button style={{borderRadius: '30px', color: filters.genders.includes('male') ? "white" : "var(--color-text)"}} variant={filters.genders.includes('male') ? "contained" : "outlined"} onClick={() => setGenders('male')}>Male</Button>
+                        <Button style={{borderRadius: '30px', color: filters.genders.includes('female') ? "white" : "var(--color-text)"}} variant={filters.genders.includes('female') ? "contained" : "outlined"} onClick={() => setGenders('female')}>Female</Button>
+                    </Stack>
+                </StyledFilterType>
+            </StyledFilterWrapper>
             <Grid spacing={2}>
                 {pets.map((pet: any) => {
                     const { id, profileImg, name, breed, type, gender } = pet
@@ -70,3 +77,21 @@ const Pets = (props: any) => {
 }
 
 export default withAuth(Pets)
+
+const StyledFilterWrapper = styled.div`
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 32px;
+`
+
+const StyledFilterType = styled.div`
+    margin-right: 32px;
+`
+
+const StyledFilterTitle = styled.div`
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 500;
+    opacity: .7;
+`
