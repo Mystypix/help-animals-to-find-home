@@ -38,7 +38,7 @@ const AddPet = (props: any) => {
       })
     }
     getImg()
-  }, [])
+  }, [inputs, storage])
 
   const handleInputChange = ({ target }: any) => {
     setInputs((state) => ({ ...state, [target.name]: target.value }))

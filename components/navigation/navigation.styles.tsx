@@ -5,9 +5,11 @@ export const StyledNavigation = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 32px;
+  margin-bottom: 50px;
   padding: 0 10vw;
   width: 100vw;
-  height: 64px;
+  height: 48px;
 `
 
 export const StyledLinkWrapper = styled.div`
@@ -18,5 +20,5 @@ export const StyledLinkWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 60px;
+  height: 48px;
 `

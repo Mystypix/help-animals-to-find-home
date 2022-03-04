@@ -32,4 +32,5 @@ a {
   --font-primary: 'Fredoka', sans-serif;
   --font-secondary: 'Inter', sans-serif;
   --color-primary-soft: #fff8f8;
+  --color-secondary-soft: rgb(177,224,218,.08);
 }

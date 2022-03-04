@@ -19,7 +19,7 @@ const AccountBox = () => {
 
   useEffect(() => {
     setUser(getDBUser(authUser) as any)
-  }, [authUser.uid])
+  }, [authUser.uid, authUser])
 
   const isShelter = () => user.type !== 'individual'
 

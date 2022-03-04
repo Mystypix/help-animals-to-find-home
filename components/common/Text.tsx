@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { isHTMLHeadingTag } from '../../utils/html'
 
 interface IText {
-  variant: TypographyVariant
+  variant?: TypographyVariant
   component: ElementType
   style?: any
   children: React.ReactNode

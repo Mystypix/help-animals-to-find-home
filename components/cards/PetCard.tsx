@@ -6,7 +6,7 @@ import Text from '../common/Text'
 interface IPetCard {
   image: string
   name: string
-  age?: string
+  age?: string | null
   species: string
   url: string
   alt: string

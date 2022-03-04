@@ -59,5 +59,5 @@ const StyledContainer = styled(MUIContainer)`
 `
 const StyledButtonContainer = styled.div`
   display: flex;
-  padding: 32px 0;
+  padding: 128px 0;
 `
