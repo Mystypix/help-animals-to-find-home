@@ -100,7 +100,7 @@ const EditPet = (props: any) => {
                 >
                 My Pets
                 </a>
-                / Add New Pet
+                / {inputs.name}
             </PageTitle>
             <Button color="secondary" onClick={handleRemove}>
                 Remove Pet
@@ -142,32 +142,38 @@ const EditPet = (props: any) => {
             value={inputs.name}
             placeholder="Name"
           />
-          <InputLabel htmlFor="type">Animal Type</InputLabel>
-          <Select
-            labelId="type"
-            id="type"
-            value={inputs.type}
-            label="Type"
-            onChange={handleInputChange}
-            name="type"
-          >
-              <MenuItem value={'dog'}>Dog</MenuItem>
-              <MenuItem value={'cat'}>Cat</MenuItem>
-              <MenuItem value={'rabbit'}>Rabbit</MenuItem>
-              <MenuItem value={'other'}>Other</MenuItem>
-          </Select>
-          <InputLabel htmlFor="gender">Sex</InputLabel>
-          <Select
-            labelId="gender"
-            id="gender"
-            value={inputs.gender}
-            label="gender"
-            onChange={handleInputChange}
-            name="gender"
-          >
-            <MenuItem value={'male'}>Male</MenuItem>
-            <MenuItem value={'female'}>Female</MenuItem>
-          </Select>
+          <div style={{display: 'inline-block'}}>
+            <InputLabel htmlFor="type">Animal Type</InputLabel>
+            <Select
+                labelId="type"
+                id="type"
+                value={inputs.type}
+                label="Type"
+                onChange={handleInputChange}
+                name="type"
+                style={{width: '200px', borderRadius: '30px', height: '39px', marginRight: '36px'}}
+                >
+                <MenuItem value={'dog'}>Dog</MenuItem>
+                <MenuItem value={'cat'}>Cat</MenuItem>
+                <MenuItem value={'rabbit'}>Rabbit</MenuItem>
+                <MenuItem value={'other'}>Other</MenuItem>
+            </Select>
+          </div>
+          <div style={{display: 'inline-block', marginBottom: '24px'}}>
+            <InputLabel htmlFor="gender">Sex</InputLabel>
+            <Select
+                labelId="gender"
+                id="gender"
+                value={inputs.gender}
+                label="gender"
+                onChange={handleInputChange}
+                name="gender"
+                style={{width: '200px', borderRadius: '30px', height: '39px',}}
+            >
+                <MenuItem value={'male'}>Male</MenuItem>
+                <MenuItem value={'female'}>Female</MenuItem>
+            </Select>
+          </div>
           <InputLabel htmlFor="age">Age</InputLabel>
           <Input name="age" onChange={handleInputChange} value={inputs.age} />
           <InputLabel htmlFor="size">Size</InputLabel>

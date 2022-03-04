@@ -28,7 +28,7 @@ const RegisterBox = () => {
             type: 'shelter',
           })
         }
-        router.push('/shelter-settings')
+        router.push('/shelter/settings')
       })
       .catch((error) => {
         console.error(error)
@@ -47,7 +47,7 @@ const RegisterBox = () => {
             type: 'individual',
           })
         }
-        router.push('/individual-settings')
+        router.push('/individual/settings')
       })
       .catch((error) => {
         console.error(error)

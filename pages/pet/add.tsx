@@ -151,6 +151,7 @@ const AddPet = (props: any) => {
                 label="Type"
                 onChange={handleInputChange}
                 name="type"
+                style={{width: '208px', marginRight: '32px'}}
               >
                 <MenuItem value={'dog'}>Dog</MenuItem>
                 <MenuItem value={'cat'}>Cat</MenuItem>
@@ -167,6 +168,7 @@ const AddPet = (props: any) => {
                 label="gender"
                 onChange={handleInputChange}
                 name="gender"
+                style={{width: '208px'}}
               >
                 <MenuItem value={'male'}>Male</MenuItem>
                 <MenuItem value={'female'}>Female</MenuItem>

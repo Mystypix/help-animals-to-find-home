@@ -101,12 +101,14 @@ const Detail = (props: any) => {
 
           <div>
             <SectionTitle>Contact on Shelter</SectionTitle>
-            <Image
-              src={shelterImg || '/images/placeholder.svg'}
-              width="500"
-              height="400"
-              alt="Profile Image"
-            />
+            <StyledShelterImageWrapper>
+              <Image
+                src={shelterImg || '/images/placeholder.svg'}
+                width="170"
+                height="128"
+                alt="Profile Image"
+              />
+            </StyledShelterImageWrapper>
             <StyledItem>
               <strong>Shelter</strong> {petInfo.userInfo.name}
             </StyledItem>
@@ -156,4 +158,12 @@ const StyledImageWrapper = styled.div`
   border-radius: 32px;
   overflow: hidden;
   height: 252px;
+`
+
+const StyledShelterImageWrapper = styled.div`
+  margin-bottom: 15px;
+  border-radius: 32px;
+  overflow: hidden;
+  width: 170px;
+  height: 128px;
 `
