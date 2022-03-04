@@ -220,5 +220,5 @@ const StyledForm = styled.form`
 const StyledImageWrapper = styled.div`
   border-radius: 32px;
   overflow: hidden;
-  height: 252;
+  height: 252px;
 `
