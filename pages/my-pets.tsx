@@ -6,7 +6,7 @@ import Card from '../components/cards/PetCard'
 import { useRouter } from 'next/router'
 import React from 'react'
 
-const ShelterSetting = (props: any) => {
+const MyPets = (props: any) => {
     const {userData} = props
     const router = useRouter()
     
@@ -33,4 +33,4 @@ const ShelterSetting = (props: any) => {
     )
 }
 
-export default withAuth(ShelterSetting)
+export default withAuth(MyPets)
