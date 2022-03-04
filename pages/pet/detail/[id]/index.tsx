@@ -101,12 +101,12 @@ const Detail = (props: any) => {
 
           <div>
             <SectionTitle>Contact on Shelter</SectionTitle>
-            {/* <Image
-              src={shelterImg}
+            <Image
+              src={shelterImg || '/images/placeholder.svg'}
               width="500"
               height="400"
               alt="Profile Image"
-            /> */}
+            />
             <StyledItem>
               <strong>Shelter</strong> {petInfo.userInfo.name}
             </StyledItem>

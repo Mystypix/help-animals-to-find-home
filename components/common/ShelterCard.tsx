@@ -1,18 +1,37 @@
-import * as React from 'react'
+import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
 import Image from './Image'
 import MapOutlinedIcon from '@mui/icons-material/MapOutlined'
+import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage'
 
 const PLACEHOLDER_IMAGE = '/images/placeholder.svg'
 
 export type Props = any
 
 const ShelterCard = ({ shelter }: Props) => {
+  const [shelterImg, setShelterImg] = useState('')
+  useEffect(() => {
+    const getShelterImg = async () => {
+      const storage = getStorage()
+      const imgRef = ref(storage, `${shelter.id}-shelter`)
+      try {
+        const imgUrl = await getDownloadURL(imgRef)
+        setShelterImg(imgUrl)
+      } catch (err: any) {
+        if (err.code === 'storage/object-not-found') {
+          setShelterImg(await getDownloadURL(ref(storage, `default-shelter`)))
+        }
+        console.log(err)
+      }
+    }
+    getShelterImg()
+  }, [])
+  console.log({shelter, shelterImg})
   return (
     <Link href={`/shelter-detail/${shelter.id}`} passHref>
 			<Card>
-        <CardImage src={shelter.profileImg || PLACEHOLDER_IMAGE} width={100} height={75} alt={shelter.name} />
+        <CardImage src={shelterImg || PLACEHOLDER_IMAGE} width={100} height={75} alt={shelter.name} />
         <Content>
           <Title>{shelter.name}</Title>
           <Description>{shelter.description}</Description>
