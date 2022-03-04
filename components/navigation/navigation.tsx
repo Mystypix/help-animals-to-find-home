@@ -25,9 +25,9 @@ const Navigation = () => {
         <Image src="/images/logo.svg" width="131px" height="48px" alt="Logo" />
       </Link>
       <StyledLinkWrapper>
+        <Link href="/">Home</Link>
         <Link href="/pets">Pets</Link>
         <Link href="/shelters">Shelters</Link>
-        <Link href="/map">Map</Link>
       </StyledLinkWrapper>
       {!authUser && (
         <StyledRegisterLogin>

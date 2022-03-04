@@ -2,7 +2,7 @@ import React from 'react'
 import Section from '../common/Section'
 import { getFirestore, collection } from 'firebase/firestore'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
-import Map from '../../pages/map'
+import SheltersMap from '../common/SheltersMap'
 
 const ShelterListSection = () => {
   const [shelters, loading, error] = useCollectionData(
@@ -15,7 +15,7 @@ const ShelterListSection = () => {
       backgroundColor="var(--color-primary-soft)"
       footerLink={{ text: 'List of All Shelters', url: '/shelters' }}
     >
-      <Map height="400px" />
+      <SheltersMap height={400} />
     </Section>
   )
 }

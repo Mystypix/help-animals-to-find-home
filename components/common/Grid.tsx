@@ -5,17 +5,19 @@ import { ResponsiveStyleValue } from '@mui/system'
 const Grid = ({
   spacing = 2,
   children,
+  xs = 1,
+  md = 3,
 }: {
-  spacing?: Number
-  xs?: Number
-  md?: Number
+  spacing?: number
+  xs?: number
+  md?: number
   children: React.ReactNode
 }) => (
   <MUIGrid container spacing={spacing as ResponsiveStyleValue<GridSpacing>}>
     {children &&
       React.Children.count(children) > 0 &&
       React.Children.map(children, (child: React.ReactNode, index: Number) => (
-        <MUIGrid item xs={1} md={3} key={`${index}`}>
+        <MUIGrid item xs={xs} md={md} key={`${index}`}>
           {child}
         </MUIGrid>
       ))}

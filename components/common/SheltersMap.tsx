@@ -1,5 +1,4 @@
-import React from 'react'
-import Mapbox from '../components/common/Mapbox'
+import React, { useCallback, useState } from 'react'
 import {
   Marker,
   Popup,
@@ -7,15 +6,19 @@ import {
   ScaleControl,
   ZoomControl,
 } from 'react-mapbox-gl'
-import { MapContainer, MarkerWrap, PopupBox } from './map.styles'
-import Image from '../components/common/Image'
-import shelters from '../mocks/shelters.json'
-import { useCallback, useState } from 'react'
+import shelters from '../../mocks/shelters.json'
+import Image from './Image'
+import Mapbox from './Mapbox'
+import { MapContainer, MarkerWrap, PopupBox } from './SheltersMap.styles'
 
 const PRAGUE_COORDS: [number, number] = [14.42139, 50.08861]
 const DEFAULT_ZOOM: [number] = [12]
 
-const Map = ({ height }: { height?: string }) => {
+export type Props = {
+  height?: number | string,
+}
+
+export default function SheltersMap({height}: Props) {
   const [selectedShelter, setSelectedShelter] = useState<any>()
   const [center, setCenter] = useState(PRAGUE_COORDS)
   const [zoom, setZoom] = useState(DEFAULT_ZOOM)
@@ -26,10 +29,9 @@ const Map = ({ height }: { height?: string }) => {
     setZoom([14])
   }, [])
 
-  return (
-    <>
-      <MapContainer style={{ height }}>
-        <Mapbox center={center} zoom={zoom} height={height}>
+	return (
+		<MapContainer style={{height}}>
+        <Mapbox center={center} zoom={zoom}>
           <>
             <ZoomControl />
             <ScaleControl />
@@ -61,8 +63,5 @@ const Map = ({ height }: { height?: string }) => {
           </>
         </Mapbox>
       </MapContainer>
-    </>
-  )
+	)
 }
-
-export default Map

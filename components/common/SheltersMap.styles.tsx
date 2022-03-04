@@ -1,9 +1,8 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
 export const MapContainer = styled.div`
   width: 100%;
-  padding: 0 50px;
-  height: 600px;
+  height: 350px;
   margin: 0 auto;
 `
 
@@ -18,5 +17,3 @@ export const PopupBox = styled.div`
 export const MarkerWrap = styled.div`
   cursor: 'pointer';
 `
-
-export default MapContainer
