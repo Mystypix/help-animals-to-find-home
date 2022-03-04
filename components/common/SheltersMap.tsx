@@ -8,8 +8,8 @@ import { useRouter } from 'next/router'
 import { query, collection, getFirestore, orderBy, where } from 'firebase/firestore'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 
-const PRAGUE_COORDS: [number, number] = [14.42139, 50.08861]
-const DEFAULT_ZOOM: [number] = [9]
+const DEFAULT_CENTER_COORDS: [number, number] = [9.984608524964438, 51.31476531127625]
+const DEFAULT_ZOOM: [number] = [4]
 const STUPID_CENTER_OFFSET_ADJUST = .0025
 
 export type Props = {
@@ -19,7 +19,7 @@ export type Props = {
 export default function SheltersMap({height}: Props) {
   const router = useRouter()
   const [selected, setSelected] = useState<any>()
-  const [center, setCenter] = useState(PRAGUE_COORDS)
+  const [center, setCenter] = useState(DEFAULT_CENTER_COORDS)
   const [zoom, setZoom] = useState(DEFAULT_ZOOM)
   const [shelters = []] = useCollectionData(
     query(
