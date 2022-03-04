@@ -30,11 +30,11 @@ const Pets = (props: any) => {
     }, []) : []
 
     const setFiltersType = (type: string) => {
-        const types = filters.types.includes(type) ? filters.types.filter((el) => el !== type) : [...filters.types, type]
+        const types = filters.types.includes(type) ? filters.types.filter((el: any) => el !== type) : [...filters.types, type]
         setFilters({...filters, types})
     }
     const setGenders = (gender: string) => {
-        const genders = filters.genders.includes(gender) ? filters.genders.filter((el) => el !== gender) : [...filters.genders, gender]
+        const genders = filters.genders.includes(gender) ? filters.genders.filter((el: any) => el !== gender) : [...filters.genders, gender]
         setFilters({...filters, genders})
     }
 
