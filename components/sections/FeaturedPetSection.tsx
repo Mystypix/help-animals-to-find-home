@@ -32,7 +32,7 @@ const NewestPetSection = () => {
           const petCardProps = {
             name,
             image: profileImg,
-            url: `/${id}`,
+            url: `/pet/detail/${id}`,
             alt: name,
             age: age ? `${age} yr` : null,
             species: breed,
