@@ -56,7 +56,6 @@ const Detail = (props: any) => {
     return <LoadingPage /> 
   }
 
-  console.log({petInfo, shelterImg})
   return (
     <div>
       <PageTitle>

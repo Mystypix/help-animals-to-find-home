@@ -36,7 +36,7 @@ const Pets = (props: any) => {
         const genders = filters.genders.includes(gender) ? filters.genders.filter((el) => el !== gender) : [...filters.genders, gender]
         setFilters({...filters, genders})
     }
-    console.log(filters)
+
     return (
         <div>
             <PageTitle>Pets</PageTitle>
@@ -54,7 +54,6 @@ const Pets = (props: any) => {
             </Stack>
             <Grid spacing={2}>
                 {pets.map((pet: any) => {
-                    console.log({pet})
                     const { id, profileImg, name, breed, type, gender } = pet
                     const url = `/pet/detail/${id}`
                     if (filters.genders.includes(gender.toLowerCase()) || filters.genders.length === 0) {
