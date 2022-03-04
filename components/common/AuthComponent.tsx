@@ -41,7 +41,7 @@ const withAuth = (Component: any) => {
       if (!loading) {
         getUser()
       }
-    }, [loading, authUser, router])
+    }, [loading, authUser])
     return Object.keys(data).length && !loading ? (
       <Component userData={data} />
     ) : (
