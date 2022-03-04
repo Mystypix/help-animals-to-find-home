@@ -12,9 +12,10 @@ interface IPetCard {
   url: string
   alt: string
   gender?: string
+  address?: string
 }
 
-const PetCard = ({ image, name, age, species, url, alt, gender }: IPetCard) => {
+const PetCard = ({ image, name, age, species, url, alt, gender, address }: IPetCard) => {
   const PetDetails = () => {
     return (
       <Container>
@@ -38,6 +39,9 @@ const PetCard = ({ image, name, age, species, url, alt, gender }: IPetCard) => {
         <Text variant="body1" component="p">
           {species}
         </Text>
+        {address && (
+          <div style={{display: 'flex', alignItems: 'flex-start', marginTop: '6px'}}><div style={{flex: '0 0 18px', marginRight: '6px'}}><Image src='/images/map.svg' width='18' height='18' /></div><div style={{opacity: '.6'}}>{address}</div></div>
+        )}
       </Container>
     )
   }

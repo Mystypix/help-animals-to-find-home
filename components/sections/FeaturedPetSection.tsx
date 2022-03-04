@@ -15,7 +15,10 @@ const NewestPetSection = () => {
 
   const pets = users ? users.reduce((acc, user): any => {
     if (user.pets) {
-      acc.push(...user.pets)
+      const petsWithAddress = user.pets.map((pet: any) => {
+        return {...pet, address: user.address}
+      })
+      acc.push(...petsWithAddress)
     }
     return acc
   }, []) : []
@@ -28,7 +31,7 @@ const NewestPetSection = () => {
     >
       <Grid spacing={2}>
         {pets.slice(0, 4).map((pet: any) => {
-          const { id, profileImg, name, age, breed, gender } = pet
+          const { id, profileImg, name, age, breed, gender, address } = pet
           const petCardProps = {
             name,
             image: profileImg,
@@ -36,7 +39,8 @@ const NewestPetSection = () => {
             alt: name,
             age: age ? `${age} yr` : null,
             species: breed,
-            gender: gender,
+            gender,
+            address,
           }
 
           return <PetCard {...petCardProps} key={id} />

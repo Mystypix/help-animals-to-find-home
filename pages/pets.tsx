@@ -24,10 +24,13 @@ const Pets = (props: any) => {
 
     const pets = users ? users.reduce((acc, user): any => {
         if (user.pets) {
-            acc.push(...user.pets)
+          const petsWithAddress = user.pets.map((pet: any) => {
+            return {...pet, address: user.address}
+          })
+          acc.push(...petsWithAddress)
         }
         return acc
-    }, []) : []
+      }, []) : []
 
     const setFiltersType = (type: string) => {
         const types = filters.types.includes(type) ? filters.types.filter((el: any) => el !== type) : [...filters.types, type]
@@ -61,11 +64,11 @@ const Pets = (props: any) => {
             </StyledFilterWrapper>
             <Grid spacing={2}>
                 {pets.map((pet: any) => {
-                    const { id, profileImg, name, breed, type, gender } = pet
+                    const { id, profileImg, name, breed, type, gender, address } = pet
                     const url = `/pet/detail/${id}`
                     if (filters.genders.includes(gender.toLowerCase()) || filters.genders.length === 0) {
                         if (filters.types.includes(type.toLowerCase()) || filters.types.length === 0) {
-                            return <Card image={profileImg} name={name} url={url} species={breed} key={id} alt={`card-${name}`} />
+                            return <Card image={profileImg} name={name} url={url} species={breed} key={id} address={address} alt={`card-${name}`} />
                         }
                         return null
                     }
