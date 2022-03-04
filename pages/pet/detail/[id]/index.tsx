@@ -14,24 +14,26 @@ const Detail = (props: any) => {
   const router = useRouter()
   const { id } = router.query
   const [shelterImg, setShelterImg] = useState('')
+  const [shelterId, setShelterId] = useState('')
+
   const [users, loading, error] = useCollectionData(
     collection(getFirestore(), 'users')
   )
 
-  useEffect(() => {
-    const getShelterImg = async () => {
-      const {userData} = props
-      const storage = getStorage()
-      const imgRef = ref(storage, `${userData.uid}-shelter`)
-      try {
-        const imgUrl = await getDownloadURL(imgRef)
-        setShelterImg(imgUrl)
-      } catch (err: any) {
-        if (err.code === 'storage/object-not-found') {
-          setShelterImg(await getDownloadURL(ref(storage, `default-shelter`)))
-        }
+  const getShelterImg = async (id = '') => {
+    const storage = getStorage()
+    const imgRef = ref(storage, `${id}-shelter`)
+    try {
+      const imgUrl = await getDownloadURL(imgRef)
+      setShelterImg(imgUrl)
+    } catch (err: any) {
+      if (err.code === 'storage/object-not-found') {
+        setShelterImg(await getDownloadURL(ref(storage, `default-shelter`)))
       }
     }
+  }
+
+  useEffect(() => {
     if (!loading) {
       getShelterImg()
     }
@@ -55,7 +57,10 @@ const Detail = (props: any) => {
     router.push('/pets')
     return <LoadingPage /> 
   }
-
+  if (shelterId !== petInfo.userInfo.id) {
+    setShelterId(petInfo.userInfo.id)
+    getShelterImg(petInfo.userInfo.id)
+  }
   return (
     <div>
       <PageTitle>
