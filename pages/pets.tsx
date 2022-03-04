@@ -27,7 +27,7 @@ const Pets = (props: any) => {
         <div>
             <PageTitle>Pets</PageTitle>
             <Grid spacing={2}>
-                {pets.map((pet) => {
+                {pets.map((pet: any) => {
                     const { id, profileImg, name, breed } = pet
                     const url = `/pet/detail/${id}`
                     return <Card image={profileImg} name={name} url={url} species={breed} key={id} alt={`card-${name}`} />
