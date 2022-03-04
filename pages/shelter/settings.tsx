@@ -221,7 +221,7 @@ const StyledForm = styled.form`
 `
 
 const StyledImage = styled(Image)`
-  border-radius: 18px; ;
+  border-radius: 18px;
 `
 
 const StyledImageUpload = styled.div`

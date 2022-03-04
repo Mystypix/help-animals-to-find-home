@@ -34,7 +34,7 @@ const ShelterCard = ({ shelter }: Props) => {
         <CardImage src={shelterImg || PLACEHOLDER_IMAGE} width={100} height={75} alt={shelter.name} />
         <Content>
           <Title>{shelter.name}</Title>
-          <Description>{shelter.description}</Description>
+          <Description>{shelter.description?.slice(0, 80)}...</Description>
           <Address><MapIcon /> {shelter.address}</Address>
         </Content>
       </Card>
