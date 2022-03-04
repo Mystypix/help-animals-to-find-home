@@ -45,7 +45,7 @@ const Detail = (props: any) => {
       if (user.pets) {
           const pet = user.pets.find((pet: any) => pet.id === id)
           if (pet) {
-            return {...pet, ...(user.type === 'shelter' && {userInfo: user})}
+            return {...pet, ...{userInfo: user}}
           }
         }
         return null
@@ -98,36 +98,48 @@ const Detail = (props: any) => {
               {petInfo.description}
             </StyledDescription>
           </div>
-
-          <div>
-            <SectionTitle>Contact on Shelter</SectionTitle>
-            <StyledShelterImageWrapper>
-              <Image
-                src={shelterImg || '/images/placeholder.svg'}
-                width="170"
-                height="128"
-                alt="Profile Image"
-              />
-            </StyledShelterImageWrapper>
-            <StyledItem>
-              <strong>Shelter</strong> {petInfo.userInfo.name}
-            </StyledItem>
-            <StyledItem>
-              <strong>Email</strong> {petInfo.userInfo.email}
-            </StyledItem>
-            <StyledItem>
-              <strong>Phone</strong> {petInfo.userInfo.phone}
-            </StyledItem>
-            <StyledItem>
-              <strong>Website</strong> {petInfo.userInfo.website}
-            </StyledItem>
-            <StyledItem>
-              <strong>Address</strong> {petInfo.userInfo.address}
-            </StyledItem>
-            <StyledDescription>
-              {petInfo.userInfo.description}
-            </StyledDescription>
-          </div>
+          {petInfo.userInfo?.type === 'shelter' && (
+              <div>
+                <SectionTitle>Contact on Shelter</SectionTitle>
+                <StyledShelterImageWrapper>
+                  <Image
+                    src={shelterImg || '/images/placeholder.svg'}
+                    width="170"
+                    height="128"
+                    alt="Profile Image"
+                  />
+                </StyledShelterImageWrapper>
+                <StyledItem>
+                  <strong>Shelter</strong> {petInfo.userInfo.name}
+                </StyledItem>
+                <StyledItem>
+                  <strong>Email</strong> {petInfo.userInfo.email}
+                </StyledItem>
+                <StyledItem>
+                  <strong>Phone</strong> {petInfo.userInfo.phone}
+                </StyledItem>
+                <StyledItem>
+                  <strong>Website</strong> {petInfo.userInfo.website}
+                </StyledItem>
+                <StyledItem>
+                  <strong>Address</strong> {petInfo.userInfo.address}
+                </StyledItem>
+                <StyledDescription>
+                  {petInfo.userInfo.description}
+                </StyledDescription>
+            </div>
+          )}
+          {petInfo.userInfo?.type !== 'shelter' && (
+            <div>
+                <SectionTitle>Contact Info</SectionTitle>
+                <StyledItem>
+                  <strong>Name</strong> {petInfo.userInfo.name}
+                </StyledItem>
+                <StyledItem>
+                  <strong>Email</strong> {petInfo.userInfo.email}
+                </StyledItem>
+            </div>
+          )}
         </StyledInfo>
       </StyledWrapper>
     </div>

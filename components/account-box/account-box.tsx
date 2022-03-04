@@ -16,15 +16,16 @@ const AccountBox = () => {
   const [user, setUser] = useState() as any
   const [open, setOpen] = useState<boolean>()
   const router = useRouter()
-
-  useEffect(() => {
-    setUser(getDBUser(authUser) as any)
+  // @ts-ignore
+  useEffect(async () => {
+    const user = await getDBUser(authUser) as any
+    setUser(user)
   }, [authUser.uid, authUser])
 
-  const isShelter = () => user.type !== 'individual'
+  const isShelter = () => user && (user.type !== 'individual')
 
   const getSettingsURL = () =>
-    isShelter() ? '/shelter/settings' : '/individual/settings'
+    isShelter() ? '/shelter/settings' : '/'
 
   return (
     <StyledWrapper>
@@ -38,9 +39,9 @@ const AccountBox = () => {
         <ClickAwayListener onClickAway={() => setOpen(false)}>
           <StyledAccountPopUp onClick={() => setOpen(false)}>
             <Menu>
-              <MenuItem onClick={() => router.push(getSettingsURL())}>
-                {isShelter() ? 'My Shelter' : 'My Profile'}
-              </MenuItem>
+              {isShelter() && <MenuItem onClick={() => router.push(getSettingsURL())}>
+                My Shelter
+              </MenuItem>}
               <MenuItem onClick={() => router.push('/my-pets')}>
                 My Pets
               </MenuItem>

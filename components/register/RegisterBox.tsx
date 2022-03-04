@@ -44,10 +44,12 @@ const RegisterBox = () => {
           const ref = doc(db, 'users', user.uid)
           await setDoc(ref, {
             id: user.uid,
+            email: user.email,
+            name: user.displayName,
             type: 'individual',
           })
         }
-        router.push('/individual/settings')
+        router.push('/')
       })
       .catch((error: any) => {
         console.error(error)
