@@ -80,7 +80,7 @@ const ShelterSetting = (props: any) => {
     const { name, address, phone, email, description, website } = inputs
     if (address) {
       const geocoding = await fetch(
-        `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURI(
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(
           address
         )}.json?access_token=${process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}`
       ).then((response) => response.json())
