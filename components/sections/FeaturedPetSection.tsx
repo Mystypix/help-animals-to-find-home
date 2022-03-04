@@ -28,7 +28,7 @@ const NewestPetSection = () => {
     >
       <Grid spacing={2}>
         {pets.slice(0, 4).map((pet: any) => {
-          const { id, profileImg, name, age, breed } = pet
+          const { id, profileImg, name, age, breed, gender } = pet
           const petCardProps = {
             name,
             image: profileImg,
@@ -36,6 +36,7 @@ const NewestPetSection = () => {
             alt: name,
             age: age ? `${age} yr` : null,
             species: breed,
+            gender: gender,
           }
 
           return <PetCard {...petCardProps} key={id} />

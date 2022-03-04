@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Card from '../common/Card'
 import Text from '../common/Text'
+import Image from '../common/Image'
 
 interface IPetCard {
   image: string
@@ -10,9 +11,10 @@ interface IPetCard {
   species: string
   url: string
   alt: string
+  gender?: string
 }
 
-const PetCard = ({ image, name, age, species, url, alt }: IPetCard) => {
+const PetCard = ({ image, name, age, species, url, alt, gender }: IPetCard) => {
   const PetDetails = () => {
     return (
       <Container>
@@ -24,10 +26,13 @@ const PetCard = ({ image, name, age, species, url, alt }: IPetCard) => {
             <Text
               variant="body1"
               component="span"
-              style={{ paddingLeft: 18, color: 'var(--color-secondary)' }}
+              style={{ fontSize: '14px', position: 'absolute', top: '186px', right: '46px', padding: '0 10px', color: 'white', background: '#FFC285', textAlign: 'center', borderRadius: '20px', lineHeight: '24px' }}
             >
               {age}
             </Text>
+          )}
+          {gender && (
+            <div style={{position: 'absolute', top: '186px', right: '12px'}} >{gender === 'male' ? <Image src='/images/male.svg' width='24' height='24' /> : <Image src='/images/female.svg' width='24' height='24' />}</div>
           )}
         </div>
         <Text variant="body1" component="p">
