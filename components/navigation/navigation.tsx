@@ -5,6 +5,10 @@ import { StyledLinkWrapper, StyledNavigation } from './navigation.styles'
 import { useAuth } from '../../context/auth-user-context'
 import { useRouter } from 'next/router'
 import Image from '../common/Image'
+import RegisterBox from '../register/RegisterBox'
+import Button from '../common/Button'
+import LoginButton from '../login/LoginButton'
+import styled from '@emotion/styled'
 
 const Navigation = () => {
   const { authUser, loading } = useAuth()
@@ -25,10 +29,19 @@ const Navigation = () => {
         <Link href="/shelters">Shelters</Link>
         <Link href="/map">Map</Link>
       </StyledLinkWrapper>
-      {!authUser && <Link href="/login-and-register">Login/Register</Link>}
+      {!authUser && (
+        <StyledRegisterLogin>
+          <RegisterBox />
+          <LoginButton />
+        </StyledRegisterLogin>
+      )}
       {authUser && <AccountBox />}
     </StyledNavigation>
   )
 }
 
 export default Navigation
+
+const StyledRegisterLogin = styled.div`
+  display: flex;
+`

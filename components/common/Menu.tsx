@@ -23,7 +23,6 @@ export default Menu
 const StyledPaper = styled(Paper)`
   border-radius: 18px;
   width: 280px;
-  height: 200px;
 `
 
 const StyledMenuList = styled(MenuList)`

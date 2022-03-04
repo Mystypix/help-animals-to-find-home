@@ -1,12 +1,10 @@
-import { useAuth } from '../../context/auth-user-context'
+import { getDBUser, useAuth } from '../../context/auth-user-context'
 import { useEffect, useState } from 'react'
 import {
   StyledWrapper,
   StyledAvatar,
   StyledAccountPopUp,
 } from './account-box.styles'
-import { db } from '../../firebase/firebase'
-import { collection, query, where, getDocs } from 'firebase/firestore'
 import React from 'react'
 import Menu from '../common/Menu'
 import { ClickAwayListener } from '@mui/base'
@@ -22,15 +20,6 @@ const AccountBox = () => {
   useEffect(() => {
     setUser(getDBUser(authUser) as any)
   }, [authUser.uid])
-
-  const getDBUser = async (user: any) => {
-    if (!user) return null
-    const q = query(collection(db, 'users'), where('id', '==', user.uid))
-
-    const querySnapshot = await getDocs(q)
-    const dbUser = querySnapshot.empty ? {} : querySnapshot.docs[0].data()
-    return dbUser
-  }
 
   const isShelter = () => user.type !== 'individual'
 

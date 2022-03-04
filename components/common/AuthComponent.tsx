@@ -1,6 +1,4 @@
-import { useAuth } from '../../context/auth-user-context'
-import { db } from '../../firebase/firebase'
-import { collection, query, where, getDocs } from 'firebase/firestore'
+import { getDBUser, useAuth } from '../../context/auth-user-context'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { getStorage, ref, getDownloadURL } from 'firebase/storage'
@@ -14,14 +12,6 @@ const withAuth = (Component: any) => {
     const [data, setData] = useState({})
 
     useEffect(() => {
-      const getDBUser = async (user: any) => {
-        if (!user) return null
-        const q = query(collection(db, 'users'), where('id', '==', user.uid))
-
-        const querySnapshot = await getDocs(q)
-        return querySnapshot.empty ? null : querySnapshot.docs[0].data()
-      }
-
       const getShelterImg = async (userData: any) => {
         const storage = getStorage()
         const imgRef = ref(storage, `${userData.id}-shelter`)

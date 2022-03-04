@@ -15,4 +15,5 @@ export const StyledAccountPopUp = styled.div`
   top: 100%;
   z-index: 100;
   right: 0;
+  transform: translateY(12px);
 `
