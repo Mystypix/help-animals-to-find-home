@@ -1,6 +1,4 @@
-import type { NextPage } from 'next'
 import React from 'react'
-import Head from 'next/head'
 import Mapbox from '../components/common/Mapbox'
 import {
   Marker,
@@ -17,7 +15,7 @@ import { useCallback, useState } from 'react'
 const PRAGUE_COORDS: [number, number] = [14.42139, 50.08861]
 const DEFAULT_ZOOM: [number] = [12]
 
-const Map: NextPage = () => {
+const Map = ({ height }: { height?: string }) => {
   const [selectedShelter, setSelectedShelter] = useState<any>()
   const [center, setCenter] = useState(PRAGUE_COORDS)
   const [zoom, setZoom] = useState(DEFAULT_ZOOM)
@@ -30,8 +28,8 @@ const Map: NextPage = () => {
 
   return (
     <>
-      <MapContainer>
-        <Mapbox center={center} zoom={zoom}>
+      <MapContainer style={{ height }}>
+        <Mapbox center={center} zoom={zoom} height={height}>
           <>
             <ZoomControl />
             <ScaleControl />
