@@ -52,6 +52,7 @@ export default function SheltersMap({height}: Props) {
                     width={40}
                     height={40}
                     alt={shelter.name}
+                    objectFit='cover'
                   />
                 </MarkerWrap>
               </Marker>

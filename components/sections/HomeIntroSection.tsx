@@ -25,6 +25,7 @@ const HomeIntroSection = () => {
           width="572"
           height="560"
           alt="Cute animal looking at you"
+          objectFit='cover'
         />
       </Container>
       <Steps>

@@ -74,6 +74,7 @@ const ShelterDetail = () => {
             width="336"
             height="252"
             alt="Profile Image"
+            objectFit='cover'
           />
         </StyledImageWrapper>
         <StyledInfo>

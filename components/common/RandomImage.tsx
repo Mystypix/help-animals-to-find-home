@@ -20,6 +20,7 @@ const RandomImage = ({
       width={width}
       height={height}
       alt={seed}
+      objectFit='cover'
     />
   )
 }

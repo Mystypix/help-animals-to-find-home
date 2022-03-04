@@ -111,6 +111,7 @@ const AddPet = (props: any) => {
                 width="335"
                 height="250"
                 alt="Profile Image"
+                objectFit='cover'
               />
             </StyledImageWrapper>
           )}

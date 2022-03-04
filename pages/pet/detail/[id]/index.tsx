@@ -73,6 +73,7 @@ const Detail = (props: any) => {
             src={petInfo.profileImg}
             width="336"
             height="252"
+            objectFit='cover'
             alt="Profile Image"
           />
         </StyledImageWrapper>
@@ -107,6 +108,7 @@ const Detail = (props: any) => {
                     width="170"
                     height="128"
                     alt="Profile Image"
+                    objectFit='cover'
                   />
                 </StyledShelterImageWrapper>
                 <StyledItem>
