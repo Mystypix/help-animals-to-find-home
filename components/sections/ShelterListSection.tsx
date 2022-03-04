@@ -5,10 +5,6 @@ import { useCollectionData } from 'react-firebase-hooks/firestore'
 import SheltersMap from '../common/SheltersMap'
 
 const ShelterListSection = () => {
-  const [shelters, loading, error] = useCollectionData(
-    collection(getFirestore(), 'users')
-  )
-
   return (
     <Section
       title="Search for a Shelter"

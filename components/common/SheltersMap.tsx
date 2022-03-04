@@ -1,11 +1,12 @@
 import React, { useCallback, useRef, useState } from 'react'
 import {Marker, Popup, ZoomControl} from 'react-mapbox-gl'
-import shelters from '../../mocks/shelters.json'
 import Image from './Image'
 import Mapbox from './Mapbox'
 import { MapContainer, MapIcon, MarkerWrap, PopupAddress, PopupTitle, PopupButtonContainer } from './SheltersMap.styles'
 import Button from '../common/Button'
 import { useRouter } from 'next/router'
+import { query, collection, getFirestore, orderBy, where } from 'firebase/firestore'
+import { useCollectionData } from 'react-firebase-hooks/firestore'
 
 const PRAGUE_COORDS: [number, number] = [14.42139, 50.08861]
 const DEFAULT_ZOOM: [number] = [9]
@@ -20,6 +21,12 @@ export default function SheltersMap({height}: Props) {
   const [selected, setSelected] = useState<any>()
   const [center, setCenter] = useState(PRAGUE_COORDS)
   const [zoom, setZoom] = useState(DEFAULT_ZOOM)
+  const [shelters = []] = useCollectionData(
+    query(
+      collection(getFirestore(), 'users'),
+      where('type', '==', 'shelter'),
+    )
+  )
 
   const handleClick = useCallback((shelter) => {
     setSelected(shelter)
@@ -32,7 +39,7 @@ export default function SheltersMap({height}: Props) {
         <Mapbox center={center} zoom={zoom}>
           <>
             <ZoomControl />
-            {shelters.map((shelter) => (
+            {shelters.filter(shelter => shelter.coordinates).map((shelter) => (
               <Marker
                 key={shelter.id}
                 coordinates={shelter.coordinates}

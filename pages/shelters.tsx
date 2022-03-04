@@ -1,22 +1,25 @@
 import React from 'react'
-import { Container } from '@mui/material'
+import { Container, MenuItem } from '@mui/material'
 import PageTitle from '../components/page-title'
 import Grid from '../components/common/Grid'
 import ShelterCard from '../components/common/ShelterCard'
 import { NextPage } from 'next'
 import Head from 'next/head'
 import SheltersMap from '../components/common/SheltersMap'
-import { List } from './shelters.styles'
-
-const shelter = {
-  id: '1', 
-  profileImg: '/images/placeholder.svg',
-  name: 'Animal Shelter Name', 
-  description: 'The Alberta SPCA operates independently of all other animal welfare organizations. The links on this page are provided as a service to the pu...',
-  address: 'Ukrajinská 334/21 , Prague 4'
-}
+import { Content } from './shelters.styles'
+import { useCollectionData } from 'react-firebase-hooks/firestore'
+import { collection, getFirestore, orderBy, query, where } from 'firebase/firestore'
+import Loading from '../components/common/Loading'
+import Select from '../components/common/Select'
 
 const Shelters: NextPage = () => {
+  const [shelters = [], loading] = useCollectionData(
+    query(
+      collection(getFirestore(), 'users'),
+      where('type', '==', 'shelter'),
+    )
+  )
+
   return (
     <Container>
       <Head>
@@ -25,13 +28,17 @@ const Shelters: NextPage = () => {
       </Head>
       <PageTitle>Shelters</PageTitle>
       <SheltersMap />
-      <List>
-        <Grid spacing={2} md={6} xs={6}>
-          <ShelterCard shelter={shelter} />
-          <ShelterCard shelter={shelter} />
-          <ShelterCard shelter={shelter} />
-        </Grid>
-      </List>
+      <Content>
+        {loading ? (
+          <Loading />
+        ) : (
+          <Grid spacing={2} md={6} xs={6}>
+            {shelters.map((shelter) => (
+              <ShelterCard key={shelter.id} shelter={shelter} />
+            ))}
+          </Grid>
+        )}
+      </Content>
     </Container>
   )
 }

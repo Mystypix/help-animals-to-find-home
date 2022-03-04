@@ -4,13 +4,15 @@ import Link from 'next/link'
 import Image from './Image'
 import MapOutlinedIcon from '@mui/icons-material/MapOutlined'
 
+const PLACEHOLDER_IMAGE = '/images/placeholder.svg'
+
 export type Props = any
 
 const ShelterCard = ({ shelter }: Props) => {
   return (
     <Link href={`/shelter-detail/${shelter.id}`} passHref>
 			<Card>
-        <CardImage src={shelter.profileImg} width={100} height={75} alt={shelter.name} />
+        <CardImage src={shelter.profileImg || PLACEHOLDER_IMAGE} width={100} height={75} alt={shelter.name} />
         <Content>
           <Title>{shelter.name}</Title>
           <Description>{shelter.description}</Description>
@@ -53,12 +55,13 @@ const Title = styled.h3`
   margin: 0 0 4px;
 `
 
-const Description = styled.h3`
+const Description = styled.p`
   font-family: Inter;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
   line-height: 24px;
+  margin: 0 0 16px;
   opacity: 0.8;
 `
 

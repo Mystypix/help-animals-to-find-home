@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-export const List = styled.div`
+export const Content = styled.div`
   margin-top: 50px;
 `
-export default List
