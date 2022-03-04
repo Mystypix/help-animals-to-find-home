@@ -20,6 +20,7 @@ function Button({
   children,
   type,
   disabled,
+  onClick,
   style,
 }: IButton) {
   const buttonProps = {
@@ -30,6 +31,7 @@ function Button({
     href: url,
     type,
     disabled,
+    onClick,
     style,
   }
   return <Container {...buttonProps}>{children}</Container>

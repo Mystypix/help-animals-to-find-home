@@ -9,9 +9,10 @@ import MuiAlert, { AlertProps } from '@mui/material/Alert'
 import { InputLabel } from '../../components/common/input-label'
 import SectionTitle from '../../components/section-title'
 import PageTitle from '../../components/page-title'
-import { getStorage, ref, uploadBytes } from 'firebase/storage'
+import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage'
 import Image from '../../components/common/Image'
 import React from 'react'
+import styled from '@emotion/styled'
 
 const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
@@ -51,15 +52,23 @@ const ShelterSetting = (props: any) => {
     setDirty(true)
   }
 
-  const handleImageUpload = async ({ target }: any) => {
-    if (target.files && target.files[0]) {
+  const uploadImageFile = () => {
+    const upload = document.getElementById('shelter-image')
+    upload?.click()
+  }
+
+  const handleImageUpload = async (e: any) => {
+    if (e.currentTarget.files && e.currentTarget.files[0]) {
       const storageRef = ref(storage, `${userData.id}-shelter`)
 
-      let img = target.files[0]
+      let img = e.currentTarget.files[0]
 
-      setInputs({ ...inputs, image: URL.createObjectURL(img) })
-      uploadBytes(storageRef, img).then((snapshot) => {
+      uploadBytes(storageRef, img).then(async (snapshot) => {
         setSnackBarOpen(true)
+        setInputs({
+          ...inputs,
+          image: await getDownloadURL(ref(storage, `${userData.id}-shelter`)),
+        })
       })
     }
   }
@@ -104,28 +113,36 @@ const ShelterSetting = (props: any) => {
   return (
     <div>
       <PageTitle>Shelter Settings</PageTitle>
-      <form onSubmit={handleSubmit}>
-        <div>
+      <StyledForm onSubmit={handleSubmit}>
+        <StyledImageUpload>
           <SectionTitle>Image</SectionTitle>
           {inputs.image && (
-            <Image
+            <StyledImage
               src={inputs.image}
-              width="572"
-              height="560"
+              width="335"
+              height="250"
               alt="Animal image"
             />
           )}
-          <label htmlFor="shelter-image">
-            <Input
-              id="shelter-image"
-              name="shelter-image"
-              type="file"
-              onChange={handleImageUpload}
-            />
-            <Button color="secondary">Upload button</Button>
-          </label>
-        </div>
-        <div>
+          <input
+            id="shelter-image"
+            name="shelter-image"
+            type="file"
+            accept="image/*"
+            style={{ display: 'none' }}
+            onChange={handleImageUpload}
+          />
+          <StyledButtonContainer style={{ justifyContent: 'center' }}>
+            <Button
+              color="secondary"
+              style={{ filter: 'grayscale(80%) brightness(1.15)' }}
+              onClick={uploadImageFile}
+            >
+              Upload image
+            </Button>
+          </StyledButtonContainer>
+        </StyledImageUpload>
+        <StyledGeneralInfo>
           <SectionTitle>General</SectionTitle>
           <InputLabel htmlFor="name">Shelter name</InputLabel>
           <Input
@@ -140,13 +157,16 @@ const ShelterSetting = (props: any) => {
             onChange={handleInputChange}
             value={inputs.description}
             placeholder="Description"
+            minRows={3}
+            multiline
           />
-          <InputLabel htmlFor="name">Shelter description</InputLabel>
+          <InputLabel htmlFor="name">Address</InputLabel>
           <Input
             name="address"
             onChange={handleInputChange}
             value={inputs.address}
             placeholder="Address"
+            style={{ marginBottom: 64 }}
           />
           <SectionTitle>Contact</SectionTitle>
           <InputLabel htmlFor="name">Email</InputLabel>
@@ -167,11 +187,13 @@ const ShelterSetting = (props: any) => {
             onChange={handleInputChange}
             value={inputs.website}
           />
-          <Button type="submit" disabled={!dirty}>
-            Save changes
-          </Button>
-        </div>
-      </form>
+          <StyledButtonContainer>
+            <Button type="submit" disabled={!dirty}>
+              Save changes
+            </Button>
+          </StyledButtonContainer>
+        </StyledGeneralInfo>
+      </StyledForm>
       <Snackbar
         open={snackBarOpen}
         autoHideDuration={6000}
@@ -190,3 +212,31 @@ const ShelterSetting = (props: any) => {
 }
 
 export default withAuth(ShelterSetting)
+
+const StyledForm = styled.form`
+  display: flex;
+  justify-content: space-between;
+  max-width: 900px;
+`
+
+const StyledImage = styled(Image)`
+  border-radius: 18px; ;
+`
+
+const StyledImageUpload = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+`
+
+const StyledGeneralInfo = styled.div`
+  flex-grow: 3;
+  margin-left: 48px;
+  display: flex;
+  flex-direction: column;
+`
+
+const StyledButtonContainer = styled.div`
+  display: flex;
+  padding: 24px 0;
+`
