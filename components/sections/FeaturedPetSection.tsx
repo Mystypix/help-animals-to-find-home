@@ -28,16 +28,14 @@ const NewestPetSection = () => {
     >
       <Grid spacing={2}>
         {pets.slice(0, 4).map((pet: any) => {
-          const { id, pictures, name, birthday, species } = pet
+          const { id, profileImg, name, age, breed } = pet
           const petCardProps = {
             name,
-            image: pictures && pictures[0],
+            image: profileImg,
             url: `/${id}`,
             alt: name,
-            age: birthday ? `${
-              new Date().getFullYear() - new Date(birthday).getFullYear()
-            } yr` : null,
-            species,
+            age: age ? `${age} yr` : null,
+            species: breed,
           }
 
           return <PetCard {...petCardProps} key={id} />

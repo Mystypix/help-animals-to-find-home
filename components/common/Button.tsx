@@ -3,7 +3,7 @@ import MUIButton from '@mui/material/Button'
 import styled from 'styled-components'
 
 interface IButton {
-  backgroundColor?: string
+  backgroundcolor?: string
   color?: 'primary' | 'secondary'
   url?: string
   children: React.ReactNode
@@ -14,7 +14,7 @@ interface IButton {
 }
 
 function Button({
-  backgroundColor = 'var(--color-primary)',
+  backgroundcolor = 'var(--color-primary)',
   color = 'primary',
   url,
   children,
@@ -26,7 +26,7 @@ function Button({
   const buttonProps = {
     variant: 'contained',
     disableElevation: true,
-    backgroundColor,
+    backgroundcolor,
     color,
     href: url,
     type,
