@@ -3,7 +3,7 @@ import React from 'react'
 
 const StyledInputLabel = styled.label`
     display: block;
-    margin-bottom: 6px;
+    padding-bottom: 6px;
     font-size: 11px;
     line-height: 16px;
 `

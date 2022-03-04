@@ -34,3 +34,7 @@ a {
   --color-primary-soft: #fff8f8;
   --color-secondary-soft: rgb(177,224,218,.08);
 }
+
+legend {
+  display: none !important;
+}
