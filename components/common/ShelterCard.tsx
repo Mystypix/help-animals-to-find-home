@@ -29,7 +29,7 @@ const ShelterCard = ({ shelter }: Props) => {
   }, [])
 
   return (
-    <Link href={`/shelter-detail/${shelter.id}`} passHref>
+    <Link href={`/shelter/${shelter.id}`} passHref>
 			<Card>
         <CardImage src={shelterImg || PLACEHOLDER_IMAGE} width={100} height={75} alt={shelter.name} />
         <Content>
